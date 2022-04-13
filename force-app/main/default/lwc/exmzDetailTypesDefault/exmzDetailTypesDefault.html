@@ -1,0 +1,72 @@
+<!--************************************************************************************
+ * File Name   : exmzDetailTypesDefault
+ * Description : Exmz Detail Types Default :  
+ * Author      : i2max
+ * Modification Log
+ * ================================================================================
+ * Ver      Date            Author      Modification
+ * ================================================================================
+   1.0      2021-03-09         i2max       Create
+************************************************************************************* -->
+<template>
+
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <!-- ============================================================================
+                ==== layout, layoutItem 을 이용하여 구성
+                ============================================================================= -->
+                <lightning-record-edit-form object-api-name="Opportunity" record-id={tempRecordId}>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="OwnerId" ></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="Amount"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="IsPrivate"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="ExpectedRevenue"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="Name"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="CloseDate"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="AccountId"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="NextStep"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout><lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="Type"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="StageName"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="LeadSource"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="Probability"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-record-edit-form>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+
+</template>

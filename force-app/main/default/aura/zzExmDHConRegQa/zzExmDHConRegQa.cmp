@@ -1,0 +1,62 @@
+<!--
+ - Created by MS on 2021-04-06.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmDHConRegQa"
+                implements="force:appHostable"
+                description="zzExmDHConRegQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="con" type="Contact" default="{'sobjectType':'Contact'}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="연락처 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Contact">
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="lastname" class="slds-size_1-of-2 right-side" fieldName="LastName" value="{!v.con.LastName}"/>
+                                <lightning:inputField aura:id="account" class="slds-size_1-of-2 left-side" fieldName="AccountId" value="{!v.con.AccountId}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="title" class="slds-size_1-of-2 right-side" fieldName="Title" value="{!v.con.Title}"/>
+                                <lightning:inputField aura:id="phone" class="slds-size_1-of-2 left-side" fieldName="Phone" value="{!v.con.Phone}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="email" class="slds-size_1-of-2 right-side" fieldName="Email" value="{!v.con.Email}"/>
+<!--                                <lightning:inputField aura:id="createdDate" class="slds-size_1-of-2 left-side" fieldName="CreatedDate" value="{!v.con.CreatedDate}"/>-->
+                            </div>
+                        </div>
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+                <lightning:button aura:id="btnNext" label="next" variant="brand" onclick="{!c.doNext}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

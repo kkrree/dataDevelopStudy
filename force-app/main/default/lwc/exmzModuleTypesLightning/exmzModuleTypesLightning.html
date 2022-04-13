@@ -1,0 +1,58 @@
+<!--
+  * @filename      : exmzModuleTypesLightning
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Module Types Lightning
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-11         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <h1 class="slds-card__header-title">1. getObjectInfo</h1>
+                <template if:true={opportunityObject}>
+                    <div>1-1. opportunity object label : {opportunityObject.label}</div>
+                    <div>1-2. opportunity object apiName : {opportunityObject.apiName}</div>
+                    <div>1-3. opportunity object fields : {opportunityObject.fields.AccountId.label}</div>
+                </template>
+                <h1 class="slds-card__header-title">2. getObjectInfos</h1>
+                <template if:true={object1}>
+                    <div>2-1. Account object label : {object1.label}</div>
+                    <div>2-1. Account object apiName : {object1.apiName}</div>
+                    <div>2-1. Account object fields : {object1.fields.AccountSource.label}</div>
+                </template>
+                <template if:true={object2}>
+                    <div>2-2. Opportunity object label : {object2.label}</div>
+                    <div>2-2. Opportunity object apiName : {object2.apiName}</div>
+                    <div>2-2. Opportunity object fields : {object2.fields.AccountId.label}</div>
+                </template>
+                <h1 class="slds-card__header-title">3. getPicklistValues</h1>
+                <template if:true={accountPicklistValues}>
+                    <div>3-1. getPicklistValues accountPicklistValues size : {accountPicklistValues.length}</div>
+                </template>
+                <h1 class="slds-card__header-title">4. getPicklistValuesByRecordType</h1>
+                <template if:true={picklistFieldValues}>
+                    <div>4-1. getPicklistValuesByRecordType picklistFieldValues.Type size : {picklistFieldValues.Type.values.length}</div>
+                </template>
+                <h1 class="slds-card__header-title">5. Navigator</h1>
+                <template if:true={picklistFieldValues}>
+                    <lightning-button label="RecordPage" onclick={navigatorRecordPage}></lightning-button>
+                    <lightning-button label="SObjectPage" onclick={navigatorSObjectPage}></lightning-button>
+                    <lightning-button label="ItemPage" onclick={navigatorItemPage}></lightning-button>
+                    <lightning-button label="NamedPage" onclick={navigatorNamedPage}></lightning-button>
+                    <lightning-button label="WebPage" onclick={navigatorWebPage}></lightning-button>
+                </template>
+
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

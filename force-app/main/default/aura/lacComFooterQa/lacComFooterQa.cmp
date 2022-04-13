@@ -1,0 +1,45 @@
+<!--
+  * @filename      : lacComFooterQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 10:51
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 10:51    I2MAX            Create
+ -->
+<aura:component description="lacComFooterQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="hasSelfClose" type="Boolean" access="public" default="false" description="자체 Close Button 존재 여부"/>
+    <aura:attribute name="parent" type="Object" access="public"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <div class="modal-footer slds-modal__footer slds-size_1-of-1">
+        <aura:if isTrue="{#not(v.hasSelfClose)}">
+            <div class="forceChangeRecordTypeFooter">
+                <lightning:button label="{#$Label.c.COM_BTN_CANCEL}" onclick="{!c.doClose}"/>
+                {#v.body}
+            </div>
+            <aura:set attribute="else">
+                {#v.body}
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

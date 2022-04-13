@@ -1,0 +1,113 @@
+<!--
+  * @filename      : exmzDetailTypesBoxHistory
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Detail Types Box History
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-11         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <!--<lightning-button label="sobjectInfo" onclick={checkTest}></lightning-button>-->
+                <!-- ============================================================================
+                ==== layout, layoutItem 을 이용하여 구성
+                ============================================================================= -->
+                <lightning-record-view-form object-api-name="Opportunity" record-id={tempRecordId}>
+                    <!-- Bottom에 border 을 위한 div -->
+                    <div class="slds-p-around_xx-small slds-border_bottom">
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.OwnerId.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="OwnerId"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.Amount.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="Amount"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.IsPrivate.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="IsPrivate"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.ExpectedRevenue.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="ExpectedRevenue"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.Name.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="Name"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.CloseDate.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="CloseDate"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.AccountId.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="AccountId"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.NextStep.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="NextStep"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.Type.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="Type"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="3" class="slds-form__item">
+                                <label class="slds-form-element__label slds-truncate">{opportunityObject.data.fields.StageName.label}</label>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="9" class="slds-form__item">
+                                <lightning-output-field variant="label-hidden" field-name="StageName"></lightning-output-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                </lightning-record-view-form>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

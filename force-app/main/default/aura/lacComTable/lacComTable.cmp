@@ -1,0 +1,56 @@
+<!--
+  * @filename      : lacComTable
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 9:45
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 테이블 component
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 9:45     I2MAX            Create
+ -->
+<aura:component description="lacComTable">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="id" type="String" access="public" default="table" description="table Id"/>
+    <aura:attribute name="isNotDefaultTableBorder" type="Boolean" access="public" default="false" description="border 여부"/>
+    <aura:attribute name="style" type="String" access="public" description="custom css"/>
+    <aura:attribute name="hasScroll" type="Boolean" access="public" default="false" description="스크롤 여부"/>
+    <aura:attribute name="hasFixedHeader" type="Boolean" access="public" default="false" description="Y 스크롤 헤더 고정 여부"/>
+    <aura:attribute name="left" type="Integer" access="public" description="열 고정할 열 개수"/>
+    <aura:attribute name="scrollHeight" type="Integer" access="public" description="Y 스크롤 높이"/>
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="scrollLeft" type="Integer" access="private" description="Y scroll 계산시 참고"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <aura:if isTrue="{!v.hasScroll}">
+        <!-- Has Scroll -->
+        <div class="slds-scrollable--y" style="{#'height:' + v.scrollHeight + 'px'}" onscroll="{!v.hasFixedHeader ? c.doScrollY : ''}">
+            <div class="slds-scrollable_x" onscroll="{!!empty(v.left) ? c.doScrollX : ''}">
+                <table aura:id="dataTable" id="{#v.id}" style="{#v.style}" class="{!'slds-table slds-table_cell-buffer slds-table_fixed-layout ' + (v.isNotDefaultTableBorder ? '' : ' slds-table_bordered')}">
+                    {!v.body}
+                </table>
+            </div>
+        </div>
+
+        <!-- None Scroll -->
+        <aura:set attribute="else">
+            <table aura:id="dataTable" id="{#v.id}" style="{#v.style}" class="{!'slds-table slds-table_cell-buffer slds-table_fixed-layout ' + (v.isNotDefaultTableBorder ? '' : ' slds-table_bordered')}">
+                {!v.body}
+            </table>
+        </aura:set>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,80 @@
+<!--
+  * @filename      : exmzListTypePubsubDetail
+  * @author        : I2MAX
+  * @date          : 2021-03-15
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-15                 I2MAX           Create
+ -->
+<template>
+
+
+    <div class="slds-grid">
+        <b>Component B</b>
+        <div class="slds-col_bump-left" if:true={opportunityId}>
+            <lightning-button label="Add" onclick={addLineItem}></lightning-button>
+        </div>
+    </div>
+
+    <template if:true={opportunityId}>
+        <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-no-row-hover slds-table_fixed-layout">
+            <thead>
+                <tr>
+                    <template if:true={opportunityLineItemInfo.data}>
+                        <th><lightning-formatted-text value={opportunityLineItemInfo.data.fields.Product2Id.label}></lightning-formatted-text></th>
+                        <th><lightning-formatted-text value={opportunityLineItemInfo.data.fields.Quantity.label}></lightning-formatted-text></th>
+                        <th><lightning-formatted-text value={opportunityLineItemInfo.data.fields.UnitPrice.label}></lightning-formatted-text></th>
+                        <th><lightning-formatted-text value={opportunityLineItemInfo.data.fields.TotalPrice.label}></lightning-formatted-text></th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- LineItem 목록 -->
+                <template for:each={wrapperList} for:item="wrapper">
+                    <tr key={wrapper.idx}>
+                        <!-- 기입력 lineItem -->
+                        <template if:true={wrapper.lineItem.Id}>
+                            <td class="slds-truncate"><lightning-formatted-text value={wrapper.lineItem.Name}></lightning-formatted-text></td>
+                            <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.Quantity}></lightning-formatted-number></td>
+                            <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.UnitPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                            <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.TotalPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                        </template>
+                        <!-- 신규 LineItem -->
+                        <template if:false={wrapper.lineItem.Id}>
+                            <td>
+                                <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                    <lightning-input-field field-name="Product2Id" value={wrapper.lineItem.Product2Id} data-index={wrapper.idx} onchange={lineItemChange} variant="label-hidden"></lightning-input-field>
+                                </lightning-record-edit-form>
+                            </td>
+                            <td>
+                                <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                    <lightning-input-field field-name="Quantity" value={wrapper.lineItem.Quantity} data-index={wrapper.idx} onchange={lineItemChange} variant="label-hidden"></lightning-input-field>
+                                </lightning-record-edit-form>
+                            </td>
+                            <td>
+                                <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                    <lightning-input-field field-name="UnitPrice" value={wrapper.lineItem.UnitPrice} data-index={wrapper.idx} onchange={lineItemChange} variant=label-hidden></lightning-input-field>
+                                </lightning-record-edit-form>
+                            </td>
+                            <td><lightning-formatted-number value={wrapper.totalPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                        </template>
+                    </tr>
+                </template>
+                <!-- LineItem 없는 경우 -->
+                <template if:false={hasLineItem}>
+                    <tr>
+                        <td colspan="4"><lightning-formatted-text value="LineItem Empty"></lightning-formatted-text></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+</template>

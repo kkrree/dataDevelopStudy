@@ -1,0 +1,20 @@
+<!--
+  * @filename      : lacComEvent
+  * @projectname   :
+  * @author        : I2MAX
+  * @date          : 2020-12-29 오전 7:33
+  * @group         :
+  * @group-content :
+  * @description   : 공통 component event
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2020-12-29 오전 7:33     I2MAX            Create
+ -->
+<aura:event type="COMPONENT" description="lacComEvent">
+    <aura:attribute name="detail" type="Map" description="Event Params Map" default="{}"/>
+</aura:event>

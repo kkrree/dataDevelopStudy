@@ -1,0 +1,105 @@
+<!--
+  * @filename      : zzExmYRAccNewFileQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-06-10
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author              description
+  * ===============================================================
+    0.1     2021-06-10                 I2MAX                Create
+ -->
+
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmYRAccMultiEditQa"
+                description="zzExmYRAccNewFileQa">
+
+
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+
+    <aura:attribute name="labelMap" type="Map" access="public" description="label관련 data를 담는 attribute"/>
+    <aura:attribute name="deleteIds" type="List" access="public" description=""/>
+    <!--    <aura:attribute name="acc" type="Account" default="{'sobjectType':'Account'}"/>-->
+    <aura:attribute name="options" type="List" />
+
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+
+    <c:lacComContainerQa>
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="다중 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComTable>
+                    <thead>
+                    <tr>
+                        <c:lacComTh>Save</c:lacComTh>
+                        <c:lacComTh title="{!v.labelMap.name}">{!v.labelMap.name}</c:lacComTh>
+                        <c:lacComTh title="{!v.labelMap.test__c}">{!v.labelMap.test__c}</c:lacComTh>
+                        <c:lacComTh title="{!v.labelMap.industry}">{!v.labelMap.industry}</c:lacComTh>
+                        <c:lacComTh>Delete/Copy</c:lacComTh>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <aura:iteration items="{!v.recordList}" var="record" indexVar="idx">
+                        <tr>
+                            <c:lacComTd>
+                                <lightning:input aura:id="mycheck" label="" type="checkbox" value="{!record}"/>
+                            </c:lacComTd>
+                            <c:lacComTd title="{#record.Name}">
+                                <lightning:input label="" type="text" value="{!record.Name}" class="slds-m-bottom_medium"/>
+                            </c:lacComTd>
+                            <c:lacComTd title="{#record.Test__c}">
+                                <lightning:input aura:id="mycheck" label="" type="checkbox" value="{!record.Test__c}"/>
+                            </c:lacComTd>
+                            <c:lacComTd title="{#record.Industry}">
+                                <!--                                <lightning:combobox aura:id="industry" label="" options="{!v.options.industry}" value="{!record.industry}"/>-->
+
+                                <!--                                <lightning:recordEditForm objectApiName="Account">-->
+                                <!--                                    <lightning:inputField aura:id="industry" class="slds-size_1-of-2 left-side" fieldName="Industry" value="{!v.acc.Industry}" variant="label-hidden"/>-->
+                                <!--                                </lightning:recordEditForm>-->
+
+                                <c:lacComComboBox aura:id="industry" label="" isLarge="{#false}" option="{!v.options}" value="{!record.Industry}"/>
+                            </c:lacComTd>
+                            <c:lacComTd>
+                                <lightning:buttonIcon name="{#idx}" iconName="utility:delete" variant="bare" value="{#record.Id}" onclick="{!c.doDelete}" alternativeText="delete"/>
+                                <lightning:buttonIcon name="{#idx}" iconName="utility:copy" variant="bare" value="{#record}" onclick="{!c.doCopy}" alternativeText="copy"/>
+                            </c:lacComTd>
+                        </tr>
+                    </aura:iteration>
+                    </tbody>
+                </c:lacComTable>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+
+</aura:component>

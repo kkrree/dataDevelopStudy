@@ -1,0 +1,35 @@
+<!--
+  * @filename      : lacComSearchItem
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-13 오전 8:24
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-13 오전 8:24     I2MAX            Create
+ -->
+<aura:component description="lacComSearchItem">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="auraId" type="String" access="public" default="lacComSearchItem" description="aura Id"/>
+    <aura:attribute name="label" type="String" access="public" description="custom label"/>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================== -->
+    <div class="i2-searchItem-p__right">
+        <aura:if isTrue="{#not(empty(v.label))}">
+            <label class="slds-form-element__label i2-searchItem-p__bottom" for="{#v.auraId}">{#v.label}</label>
+        </aura:if>
+        {#v.body}
+    </div>
+</aura:component>

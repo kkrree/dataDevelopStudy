@@ -1,0 +1,57 @@
+<!--
+  * @filename      : exmOpptyReg2Qa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오후 3:08
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오후 3:08     I2MAX            Create
+ -->
+<aura:component extends="c:exmBase"
+                description="exmOpptyReg2Qa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="oppty" type="Opportunity" default="{'sobjectType':'Opportunity'}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="기회 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Opportunity">
+                            <lightning:inputField aura:id="name" class="" fieldName="Name" value="{!v.oppty.Name}"/>
+                            <lightning:inputField aura:id="account" class="" fieldName="AccountId" value="{!v.oppty.AccountId}"/>
+                            <lightning:inputField aura:id="amount" class="" fieldName="Amount" value="{!v.oppty.Amount}"/>
+                            <lightning:inputField aura:id="probability" class="" fieldName="Probability" value="{!v.oppty.Probability}"/>
+                            <lightning:inputField aura:id="closeDate" class="" fieldName="CloseDate" value="{!v.oppty.CloseDate}"/>
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa/>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

@@ -1,0 +1,49 @@
+<!--
+  * @filename      : lacComHeaderDetailCard
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 11:03
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 11:03    I2MAX            Create
+ -->
+<aura:component description="lacComHeaderDetailCard">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="iconName" type="String" default="standard:event" description="아이콘"/>
+    <aura:attribute name="title" type="String" default="고객" description="제목"/>
+    <aura:attribute name="button" type="Aura.Component[]" description="버튼 영역"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <aura:if isTrue="{!v.isCommunity}">
+        <c:lacComDetailCommunityHeader title="{#v.title}"
+                                       aura:id="header"
+                                       iconName="{#v.iconName}">
+
+            <aura:set attribute="button">
+                {!v.button}
+            </aura:set>
+        </c:lacComDetailCommunityHeader>
+        <aura:set attribute="else">
+            <c:lacComDetailInternalHeader title="{#v.title}"
+                                          aura:id="header"
+                                          iconName="{#v.iconName}">
+                <aura:set attribute="button">
+                    {!v.button}
+                </aura:set>
+            </c:lacComDetailInternalHeader>
+        </aura:set>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,34 @@
+<!--
+  * @filename      : lacComBodyQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 10:49
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 10:49    I2MAX            Create
+ -->
+<aura:component description="lacComBodyQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="height" type="Integer" access="public" description="dropdown 부분이 짤릴 경우 사용. ex) 400"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <div aura:id="modalbody" class="slds-modal__content slds-p-around--x-small slds-size_1-of-1 slds-is-relative">
+        <div class="slds-is-relative">
+            {#v.body}
+            <div style="{#'height:' + (not(empty(v.height)) ? v.height : '') + 'px'}"></div>
+        </div>
+    </div>
+</aura:component>

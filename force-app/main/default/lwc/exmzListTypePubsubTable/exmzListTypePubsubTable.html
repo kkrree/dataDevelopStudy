@@ -1,0 +1,52 @@
+<!--
+  * @filename      : exmzListTypePubsubTable
+  * @author        : I2MAX
+  * @date          : 2021-03-15
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-15                 I2MAX           Create
+ -->
+<template>
+
+    <b>Component A</b>
+
+    <c-lwc-ufw-table-frame onpreviouspage={handlePreviousPage} onnextpage={handleNextPage}>
+        <template if:true={opportunityList}>
+            <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-no-row-hover slds-table_fixed-layout">
+                <thead>
+                    <tr>
+                        <template if:true={opportunityInfo.data}>
+                            <th><lightning-formatted-text value={opportunityInfo.data.label}></lightning-formatted-text></th>
+                        </template>
+                        <template if:true={opportunityLineItemInfo.data}>
+                            <th><lightning-formatted-text value={opportunityLineItemInfo.data.label}></lightning-formatted-text></th>
+                        </template>
+                        <th><lightning-formatted-text value="Actions"></lightning-formatted-text></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={wrapperList} for:each={wrapperList} for:item="wrapper">
+                        <tr key={wrapper.opportunity.Id}>
+                            <td class="slds-truncate"><lightning-formatted-text value={wrapper.opportunity.Name}></lightning-formatted-text></td>
+                            <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItemSize}></lightning-formatted-number></td>
+                            <td>
+                                <lightning-button-menu>
+                                    <lightning-menu-item label="Show lineitem" data-record-id={wrapper.opportunity.Id} onclick={showLineItem}></lightning-menu-item>
+                                </lightning-button-menu>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+    </c-lwc-ufw-table-frame>
+
+</template>

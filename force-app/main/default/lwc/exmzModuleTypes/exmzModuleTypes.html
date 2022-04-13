@@ -1,0 +1,49 @@
+<!--
+  * @filename      : exmzModuleTypes
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Module Types
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-11         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- Header -->
+        <span slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Exmaple" title="Record Detail Types">
+            </c-lwc-ufw-header>
+        </span>
+        <!-- Body -->
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <div class="slds-p-left_small slds-p-right_small">
+                    <lightning-tabset>
+                        <lightning-tab label="Module(@salesforce)">
+                            <c-exmz-module-types-salesforce temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-module-types-salesforce>
+                        </lightning-tab>
+                        <lightning-tab label="Module(@salesforce/messageChannel)">
+                            <c-exmz-lms-type-sample ></c-exmz-lms-type-sample>
+                            <c-exmz-lms-type-sample-2 ></c-exmz-lms-type-sample-2>
+                        </lightning-tab>
+<!--
+                        <lightning-tab label="Module(schema)">
+                            <c-exmz-module-types-scheme temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-module-types-scheme>
+                        </lightning-tab>
+-->
+                        <lightning-tab label="Module(lightning)">
+                            <c-exmz-module-types-lightning temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-module-types-lightning>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </div>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

@@ -1,0 +1,4 @@
+/* Checkbox 영역 */
+table thead tr th:first-child {
+    width: 5%;
+}

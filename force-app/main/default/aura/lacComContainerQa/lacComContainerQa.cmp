@@ -1,0 +1,72 @@
+<!--
+  * @filename      : lacComContainerQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 10:35
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 10:35    I2MAX            Create
+ -->
+<aura:component extends="c:lacComBase"
+                description="lacComContainerQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="header" type="Aura.Component[]" access="public" description=""/>
+    <aura:attribute name="content" type="Aura.Component[]" access="public" description=""/>
+    <aura:attribute name="footer" type="Aura.Component[]" access="public" description=""/>
+    <aura:attribute name="isWide" type="Boolean" access="public" description="넓은 사이즈의 모달이 필요한 경우" default="{#false}"/>
+    <aura:attribute name="isSmall" type="Boolean" access="public" description="작은 사이즈의 모달이 필요한 경우" default="{#false}"/>
+
+    <aura:html tag="style">
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content{
+        overflow-y:hidden !important;
+        height:unset !important;
+        max-height:unset !important;
+        }
+    </aura:html>
+
+    <aura:if isTrue="{#v.isWide}">
+        <aura:html tag="style">
+            .slds-modal__container {
+            max-width: 90rem !important;
+            width:90% !important;
+            }
+        </aura:html>
+    </aura:if>
+    <aura:if isTrue="{#v.isSmall}">
+        <aura:html tag="style">
+            .slds-modal__container {
+            max-width: 50rem !important;
+            width:30% !important;
+            }
+        </aura:html>
+    </aura:if>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <!-- Header -->
+    {!v.header}
+
+    <!-- body -->
+    {!v.content}
+
+    <!-- footer -->
+    {!v.footer}
+</aura:component>

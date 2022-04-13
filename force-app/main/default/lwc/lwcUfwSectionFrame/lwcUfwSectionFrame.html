@@ -1,0 +1,34 @@
+<!--
+  * @filename      : lwcUfwSectionFrame
+  * @author        : I2MAX
+  * @date          : 2021-03-04
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-04                 I2MAX           Create
+ -->
+<template>
+
+    <h3 if:true={hasSectionFrameHeader}  class="slds-section__title slds-theme_shade">
+        <span class="slds-truncate slds-m-left_small" title="Section Title">{sectionFrameTitle}</span>
+    </h3>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-has-flexi-truncate slds-grid">
+            <fieldset class="slds-form-element slds-form_compound slds-is-editing">
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__group">
+                        <slot></slot>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</template>

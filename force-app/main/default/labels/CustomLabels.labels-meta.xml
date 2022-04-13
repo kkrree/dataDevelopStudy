@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>COM_BTN_CANCEL</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>취소</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>COM_BTN_NEXT</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>다음</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>COM_BTN_PREV</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>이전</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>COM_BTN_SAVE</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>저장</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>COM_MSG_APEX_ERROR</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>COM_MSG_APEX_ERROR</shortDescription>
+        <value>An error occurred.</value>
+    </labels>
+    <labels>
+        <fullName>COM_MSG_APEX_SUCCESS</fullName>
+        <categories>COM</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>COM_MSG_APEX_SUCCESS</shortDescription>
+        <value>Done successfully.</value>
+    </labels>
+</CustomLabels>

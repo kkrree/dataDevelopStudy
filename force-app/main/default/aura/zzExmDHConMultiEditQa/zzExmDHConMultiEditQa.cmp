@@ -1,0 +1,91 @@
+<!--
+ - Created by MS on 2021-04-14.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmDHConMultiEditQa"
+                description="zzExmDHConMultiEditQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="labelMap" type="Map" access="public" description="label관련 data를 담는 attribute"/>
+    <aura:attribute name="deleteIds" type="List" access="public" description=""/>
+    <aura:attribute name="con" type="Contact" default="{'sobjectType':'Contact'}"/>
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================== -->
+    <c:lacComContainerQa>
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="다중 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComTable>
+                    <thead>
+                    <tr>
+                        <c:lacComTh>Save</c:lacComTh>
+                        <c:lacComTh title="{!v.labelMap.name}">{!v.labelMap.name}</c:lacComTh>
+                        <c:lacComTh title="{!v.labelMap.accountid}">{!v.labelMap.accountid}</c:lacComTh>
+<!--                        <c:lacComTh title="{!v.labelMap.leadsource}">{!v.labelMap.leadsource}</c:lacComTh>-->
+                        <c:lacComTh title="{!v.labelMap.donotcall}">{!v.labelMap.donotcall}</c:lacComTh>
+<!--                        <c:lacComTh>Delete/Copy</c:lacComTh>-->
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <aura:iteration items="{!v.recordList}" var="record" indexVar="idx">
+                        <tr>
+                            <c:lacComTd>
+                                <lightning:input aura:id="mycheck" label="" type="checkbox" value="{!record}"/>
+                            </c:lacComTd>
+                            <c:lacComTd title="{#record.Name}">
+                                <lightning:input label="" type="text" value="{!record.Name}" class="slds-m-bottom_medium"/>
+                            </c:lacComTd>
+                            <c:lacComTd title="{#record.AccountId}">
+                                <lightning:recordEditForm objectApiName="Contact" recordId="{#record.Id}">
+                                    <lightning:inputField fieldName="AccountId" value="{!record.AccountId}" variant="label-hidden"/>
+                                </lightning:recordEditForm>
+                            </c:lacComTd>
+<!--                            <c:lacComTd title="{#record.LeadSource}">-->
+<!--                                <lightning:recordEditForm objectApiName="Contact">-->
+<!--                                    <lightning:inputField aura:id="leadsource" fieldName="LeadSource" value="{!v.con.LeadSource}" variant="label-hidden"/>-->
+<!--                                </lightning:recordEditForm>-->
+<!--                            </c:lacComTd>-->
+                            <c:lacComTd title="{#record.LeadSource}">
+                                <c:lacComSearchItem auraId="leadSource">
+                                    <c:lacComComboBox aura:id="leadSource" option="{!v.initData.leadSourceList}" value="{!v.reqData.leadSource}"/>
+                                </c:lacComSearchItem>
+                            </c:lacComTd>
+<!--                            <c:lacComTd title="{#record.DoNotCall}">-->
+<!--                                <lightning:input label="" type="checkbox" value="{!record.DoNotCall}"/>-->
+<!--                            </c:lacComTd>-->
+                            <c:lacComTd>
+                                <lightning:buttonIcon name="{#idx}" iconName="utility:delete" variant="bare" value="{#record.Id}" onclick="{!c.doDelete}" alternativeText="delete"/>
+                                <lightning:buttonIcon name="{#idx}" iconName="utility:copy" variant="bare" value="{#record}" onclick="{!c.doCopy}" alternativeText="copy"/>
+                            </c:lacComTd>
+                        </tr>
+                    </aura:iteration>
+                    </tbody>
+                </c:lacComTable>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

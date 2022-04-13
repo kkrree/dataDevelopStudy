@@ -1,0 +1,58 @@
+<!--
+  * @filename      : lacComDetailCommunityHeader
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-13 오전 10:53
+  * @group         : 
+  * @group-content : 
+  * @description   : Record Detail page 내 관련 목록 형식의 화면 공통 Community Header
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-13 오전 10:53    I2MAX            Create
+ -->
+<aura:component description="lacComDetailCommunityHeader">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="iconName" type="String" default="standard:event" description="아이콘"/>
+    <aura:attribute name="title" type="String" default="내 모든 고객" description="제목"/>
+    <aura:attribute name="button" type="Aura.Component[]" description="버튼 영역"/>
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="device" type="String" access="private" default="{!$Browser.formFactor}" description="기기 판별"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <aura:if isTrue="{#v.device == 'DESKTOP' || v.device =='TABLET'}">
+        <div class="slds-grid slds-page-header forceRelatedListCardHeader">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure stencil slds-avatar slds-avatar_small">
+                    <div class="extraSmall forceEntityIcon">
+                        <lightning:icon iconName="{#v.iconName}"/>
+                    </div>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-card__header-link baseCard__header-title-container slds-truncate slds-m-right--xx-small" title="{#v.title}">
+                            {#v.title}
+                        </span>
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <div class="actionsContainer">
+                    {#v.button}
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

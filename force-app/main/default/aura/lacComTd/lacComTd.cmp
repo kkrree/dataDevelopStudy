@@ -1,0 +1,54 @@
+<!--
+  * @filename      : lacComTd
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 10:18
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 10:18    I2MAX            Create
+ -->
+<aura:component description="lacComTd">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="title" type="String" access="public" description="제목"/>
+    <aura:attribute name="style" type="String" access="public" description="추가 custom css"/>
+    <aura:attribute name="isErrorTd" type="Boolean" access="public" default="false" description="td의 Error css 표시여부"/>
+
+    <aura:attribute name="colspan" type="Integer" access="public" default="1" description="합칠 열 수"/>
+    <aura:attribute name="rowspan" type="Integer" access="public" default="1" description="합칠 행 수"/>
+
+    <aura:attribute name="isLineBreak" type="Boolean" default="false" description="Excel 처럼 Line Enter 를 그대로 표현"/>
+    <aura:attribute name="class" type="String" default="{!v.isLineBreak ? '' : 'slds-truncate'}" description="css class"/>
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="tdClass" type="String" access="private" default="{!v.isErrorTd ? 'custom-hasError_td' : ''}" description="td class"/>
+
+    <aura:if isTrue="{!v.isLineBreak}">
+        <aura:html tag="style">
+            td > p {
+            white-space: pre;
+            }
+        </aura:html>
+    </aura:if>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================= -->
+    <td scope="row" style="{#v.style}" colspan="{#v.colspan}" rowspan="{#v.rowspan}" class="{#v.tdClass}">
+        <p class="{#v.class}" title="{#v.title}">
+            {#v.body}
+        </p>
+    </td>
+</aura:component>

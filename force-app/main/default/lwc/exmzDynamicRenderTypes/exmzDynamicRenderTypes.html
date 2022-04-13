@@ -1,0 +1,52 @@
+<!--
+  * @filename      : exmzDynamicRenderTypes
+  * @author        : I2MAX
+  * @date          : 2021-03-15
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Dynamic Render Types
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-15         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- Header -->
+        <span slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Exmaple" title="Dynamic Render Types">
+            </c-lwc-ufw-header>
+        </span>
+        <!-- Body -->
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <div class="slds-p-left_small slds-p-right_small">
+                    <lightning-tabset>
+                        <lightning-tab label="Dynamic Component Render(main page)">
+                            <lightning-button label="renderMain" onclick={renderMain}></lightning-button>
+                            <lightning-button label="renderSub" onclick={renderSub}></lightning-button>
+                            <!-- 동적 컴포넌트 -->
+                            <c-lwc-ufw-dynamic-render class='directRender'>
+                                <c-exmz-dynamic-render-types-main temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-dynamic-render-types-main>
+                                <c-exmz-dynamic-render-types-sub temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-dynamic-render-types-sub>
+                            </c-lwc-ufw-dynamic-render>
+                        </lightning-tab>
+                        <lightning-tab label="Dynamic Component Render(modal QA)">
+                            <lightning-button label="renderQaSample1" onclick={renderQaSample1}></lightning-button>
+                            <lightning-button label="renderQaSample2" onclick={renderQaSample2}></lightning-button>
+                            <!-- 동적 컴포넌트 -->
+                            <c-lwc-ufw-dynamic-render class='directRenderQa'>
+                                <c-exmz-dynamic-render-types-qa-sample-1 temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-dynamic-render-types-qa-sample-1>
+                                <c-exmz-dynamic-render-types-qa-sample-2 temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-dynamic-render-types-qa-sample-2>
+                            </c-lwc-ufw-dynamic-render>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </div>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

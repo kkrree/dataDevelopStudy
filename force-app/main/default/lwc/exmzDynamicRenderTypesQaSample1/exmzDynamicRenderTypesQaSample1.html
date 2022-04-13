@@ -1,0 +1,101 @@
+<!--
+  * @filename      : exmzDynamicRenderTypesQaSample1
+  * @author        : I2MAX
+  * @date          : 2021-03-15
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Dynamic Render Types Qa Sample 1
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-15         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container-qa show-modal={showModal}>
+        <span slot="header">
+            <c-lwc-ufw-header-qa header-string="Render Dynamic Component Sample1"></c-lwc-ufw-header-qa>
+        </span>
+        <!-- Body -->
+        <span slot="content">
+            <c-lwc-ufw-body-qa>
+                <template if:true={opportunity}>
+                    <!-- ============================================================================
+                    ==== layout, layoutItem 을 이용하여 구성
+                    ============================================================================= -->
+                    <lightning-record-edit-form object-api-name="Opportunity" record-id={tempRecordId}>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="OwnerId"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="Amount"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="IsPrivate"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="ExpectedRevenue"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="Name"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="CloseDate"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="AccountId"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="NextStep"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="Type"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="StageName"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="LeadSource"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="12" class="slds-form__item">
+                                <lightning-input-field field-name="Probability"></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-record-edit-form>
+                </template>
+            </c-lwc-ufw-body-qa>
+        </span>
+        <span slot="footer">
+            <c-lwc-ufw-footer-qa>
+                <lightning-button label="Save" onclick={save}></lightning-button>
+                <lightning-button label="Cancel" onclick={gfnComCloseModal}></lightning-button>
+            </c-lwc-ufw-footer-qa>
+        </span>
+    </c-lwc-ufw-container-qa>
+</template>

@@ -1,0 +1,99 @@
+<!--
+  * @filename      : exmOpptyDetailView
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오후 12:46
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author              description
+  * ===============================================================
+    0.1     2021-01-14 오후 12:46    I2MAX                Create
+ -->
+<aura:component extends="c:exmBase"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId"
+                description="exmOpptyDetailView">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="testList" type="String[]" access="private" default="['Amount']" description=""/>
+    <aura:attribute name="fields" type="String[]" default="['Name']" />
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+
+    <!-- =============================================================================================================
+    ==== event
+    ============================================================================================================== -->
+
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+
+    <!-- =============================================================================================================
+    ==== method
+    ============================================================================================================== -->
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerDetailCard hasContainerBorder="{#false}">
+        <aura:set attribute="content">
+            <c:lacComBodyDetailCard>
+                <!-- view 용 -->
+                <lightning:recordViewForm objectApiName="Opportunity" recordId="{#v.recordId}">
+                    <lightning:layout horizontalAlign="center" class="slds-m-around_small">
+                        <lightning:layoutItem flexibility="auto" size="2" class="slds-text-align_right">
+                            <p class="slds-p-right_medium">Amount</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="4" class="slds-text-align_center">
+                            <p class=""><lightning:outputField fieldName="Amount" variant="label-hidden"/></p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="2" class="slds-text-align_right">
+                            <p class="slds-p-right_medium">CloseDate</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="4" class="slds-text-align_center">
+                            <p class=""><lightning:outputField fieldName="CloseDate" variant="label-hidden"/></p>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                    <lightning:layout horizontalAlign="center" class="slds-m-around_small">
+                        <lightning:layoutItem flexibility="auto" size="2" class="slds-text-align_right">
+                            <p class="slds-p-right_medium">Amount</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="4" class="slds-text-align_center">
+                            <p class=""><lightning:outputField fieldName="Amount" variant="label-hidden"/></p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="2" class="slds-text-align_right">
+                            <p class="slds-p-right_medium">Description</p>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem flexibility="auto" size="4" class="slds-text-align_center">
+                            <p class="slds-p-left_medium">
+                                <lightning:formattedText value="test"/>
+                            </p>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </lightning:recordViewForm>
+
+                <!-- page layout 그대로 -->
+<!--                <lightning:recordForm-->
+<!--                        recordId="{#v.recordId}"-->
+<!--                        objectApiName="Opportunity"-->
+<!--                        layoutType="Full"-->
+<!--                        mode="edit"-->
+<!--                        columns="2"-->
+<!--                        fields="{!v.fields}"/>-->
+            </c:lacComBodyDetailCard>
+        </aura:set>
+    </c:lacComContainerDetailCard>
+</aura:component>

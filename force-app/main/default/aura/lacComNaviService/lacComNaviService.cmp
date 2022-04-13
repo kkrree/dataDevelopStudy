@@ -1,0 +1,82 @@
+<!--
+  * @filename      : lacComNaviService
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 9:22
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 페이지 이동 서비스 Component
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 9:22     I2MAX            Create
+ -->
+<aura:component description="lacComNaviService">
+
+    <!-- =============================================================================================================
+    ==== method
+    ============================================================================================================== -->
+    <!-- =============================================================================================================
+    ==== PageReference
+    ============================================================================================================== -->
+    <aura:method name="doNaviByPageReference" access="public">
+        <aura:attribute name="pageReference" type="Map" description="해당 pageReference" required="{#true}"/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== Navigation PageReference Type : standard__objectPage
+    ============================================================================================================== -->
+    <aura:method name="doNaviStdObjectPage" access="public">
+        <aura:attribute name="objectApiName" type="String" description="해당 SObject api" required="{#true}"/>
+        <aura:attribute name="actionName" type="String" description="list, home, new" required="{#true}"/>
+        <aura:attribute name="state" type="Map" description=" ex: {
+            'filterName': 'RecentlyViewedAccounts',
+            'defaultFieldValues' = 'AccountNumber=ACXXXX,CustomCheckbox__c=true,Name=Salesforce%2C%20%231%3DCRM,NumberOfEmployees=35000,OwnerId=005XXXXXXXXXXXXXXX,
+            'nooverride': '1'
+        }"/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== Navigation PageReference Type : standard__recordPage
+    ============================================================================================================== -->
+    <aura:method name="doNaviStdRecordPage" access="public">
+        <aura:attribute name="recordId" type="String" description="해당 recordId" required="{#true}"/>
+        <aura:attribute name="actionName" type="String" description="view, edit, clone" required="{#true}"/>
+        <aura:attribute name="objectApiName" type="String" description="해당 SObject api"/>
+        <aura:attribute name="state" type="Map" description=" ex: {
+            'nooverride':'1'
+        }"/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== Navigation PageReference Type : standard__navItemPage
+    ============================================================================================================== -->
+    <aura:method name="doNaviStdNaviItemPage" access="public">
+        <aura:attribute name="apiName" type="String" description="해당 tab명" required="{#true}"/>
+        <aura:attribute name="state" type="Map" description=""/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== Navigation PageReference Type : Standard Named Page Type
+    ============================================================================================================== -->
+    <aura:method name="doNaviStdNamedPage" access="public">
+        <aura:attribute name="pageName" type="String" description="해당 page api명" required="{#true}"/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== Navigation PageReference Type : Community Named Page Type
+    ============================================================================================================== -->
+    <aura:method name="doNaviCommNamedPage" access="public">
+        <aura:attribute name="name" type="String" description="해당 page api명" required="{#true}"/>
+        <aura:attribute name="state" type="Map" description=""/>
+    </aura:method>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:navigation aura:id="naviService"/>
+</aura:component>

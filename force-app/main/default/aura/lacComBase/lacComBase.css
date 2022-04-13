@@ -1,0 +1,28 @@
+/****************************************************************************************
+ * @filename      : lacComBase.css
+ * @projectname   :
+ * @author        : I2MAX
+ * @date          : 2020-12-29 오전 7:36
+ * @group         :
+ * @group-content :
+ * @description   :
+ * @tester        :
+ * @reference     :
+ * @release       : v1.0.0
+ * @copyright     : Copyright © I2max. All Rights Reserved.
+ * @modification Log
+ * ===============================================================
+ * ver     date                      author        description
+ * ===============================================================
+   0.1     2020-12-29 오전 7:36       I2MAX          Create
+ ****************************************************************************************/
+.THIS {
+}
+
+/*
+    Community에서 lightning:card 사용 시, title이 없으면 error 발생.
+    title을 화면 상에 안 보이게 할 때 사용. (in Community)
+*/
+.THIS .hide-title > header.slds-card__header {
+    display: none;
+}

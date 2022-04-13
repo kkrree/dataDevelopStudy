@@ -1,0 +1,43 @@
+<!--
+ - Created by MS on 2021-04-06.
+ -->
+<aura:component extends="c:exmBase"
+                description="zzExmDHConReg2Qa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="con" type="Contact" default="{'sobjectType':'Contact'}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="기회 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Contact">
+                        <lightning:inputField aura:id="name" class="" fieldName="Name" value="{!v.con.Name}"/>
+                        <lightning:inputField aura:id="account" class="" fieldName="AccountId" value="{!v.con.AccountId}"/>
+                        <lightning:inputField aura:id="amount" class="" fieldName="Amount" value="{!v.con.Title}"/>
+                        <lightning:inputField aura:id="probability" class="" fieldName="Probability" value="{!v.con.Phone}"/>
+<!--                        <lightning:inputField aura:id="closeDate" class="" fieldName="CloseDate" value="{!v.oppty.CloseDate}"/>-->
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa/>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

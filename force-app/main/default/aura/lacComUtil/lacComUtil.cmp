@@ -1,0 +1,36 @@
+<!--
+  * @filename      : lacComUtil
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 10:13
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 10:13    I2MAX            Create
+ -->
+<aura:component description="lacComUtil">
+
+    <!-- =============================================================================================================
+    ==== method
+    ============================================================================================================== -->
+    <!-- ===================================================================================================
+    ==== 배열을 return
+    ==================================================================================================== -->
+    <aura:method name="doConvertArray" action="{!c.doConvertArray}" access="public">
+        <aura:attribute name="targetList" type="List" required="{#true}"/>
+    </aura:method>
+
+    <!-- ===================================================================================================
+    ==== check된 checkbox의 value return
+    ==================================================================================================== -->
+    <aura:method name="doGetInputCheckedArray" action="{!c.doGetInputCheckedArray}" access="public">
+        <aura:attribute name="targetList" type="List" required="{#true}"/>
+    </aura:method>
+</aura:component>

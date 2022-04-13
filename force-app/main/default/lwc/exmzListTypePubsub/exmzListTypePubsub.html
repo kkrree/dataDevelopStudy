@@ -1,0 +1,48 @@
+<!--
+  * @filename      : exmzListTypePubsub
+  * @author        : I2MAX
+  * @date          : 2021-03-15
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-15                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <div slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Header" title="Pubsub">
+            </c-lwc-ufw-header>
+        </div>
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <div slot="content">
+            <c-lwc-ufw-body has-search-section=false>
+                <lightning-layout multiple-rows="false">
+                    <!-- Table -->
+                    <lightning-layout-item size="6" padding="around-small">
+                        <c-exmz-list-type-pubsub-table></c-exmz-list-type-pubsub-table>
+                    </lightning-layout-item>
+
+                    <!-- Detail -->
+                    <lightning-layout-item size="6" padding="around-small">
+                        <c-exmz-list-type-pubsub-detail></c-exmz-list-type-pubsub-detail>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </c-lwc-ufw-body>
+        </div>
+
+
+    </c-lwc-ufw-container>
+
+</template>

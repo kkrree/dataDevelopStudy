@@ -1,0 +1,26 @@
+<!--
+  * @filename      : lwcUfwSearchLookupItem
+  * @author        : I2MAX
+  * @date          : 2021-02-10
+  * @group         : 
+  * @group-content : 
+  * @description   : main page의 body searchSection 영역에
+  *                  lightning-input-field를 사용해야할 경우 해당 component 사용 필요.
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author        description
+  * ===============================================================
+    0.1     2021-02-10      I2MAX           Create
+ -->
+<template>
+    <div class="slds-list_horizontal i2-searchLookupItem-p__right">
+        <template if:true={hasLabel}>
+            <label class="slds-form-element__label i2-searchLookupItem-p__top">{labelName}</label>
+        </template>
+
+        <slot></slot>
+    </div>
+</template>

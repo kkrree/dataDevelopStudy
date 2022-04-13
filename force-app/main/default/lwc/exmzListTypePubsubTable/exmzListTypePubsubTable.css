@@ -1,0 +1,3 @@
+table thead tr th:not(:first-child){
+    width : 25%;
+}

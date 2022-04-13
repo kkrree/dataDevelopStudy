@@ -1,0 +1,30 @@
+<!--
+  * @filename      : exmzObjectQuickAction
+  * @author        : I2MAX
+  * @date          : 2021-04-04
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-04-04                 I2MAX           Create
+ -->
+<template>
+
+    <c-lwc-ufw-object-quick-action header="Quick Action Example">
+        <div slot="contents">
+            <c-exmz-card-type-default record-id={recordId} button-invisible=true></c-exmz-card-type-default>
+        </div>
+
+        <div slot="footer">
+            <lightning-button label="cancel" onclick={fireCloseEvent}></lightning-button>
+            <lightning-button label="save" variant="brand" onclick={callSave}></lightning-button>
+        </div>
+    </c-lwc-ufw-object-quick-action>
+
+</template>

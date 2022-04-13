@@ -1,0 +1,39 @@
+<!--
+  * @filename      : lacComSearchLookupItem
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-13 오전 9:10
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-13 오전 9:10     I2MAX            Create
+ -->
+<aura:component description="lacComSearchLookupItem">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="auraId" type="String" access="public" default="lacComSearchLookupItem" description="aura Id"/>
+    <aura:attribute name="sobjectName" type="String" access="public" required="{#true}" description="recordEditForm에 사용한 Sobject명"/>
+    <aura:attribute name="label" type="String" access="public" description="custom label"/>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================== -->
+    <aura:if isTrue="{#not(empty(v.label))}">
+        <label class="slds-form-element__label i2-searchLookupItem-p__top" for="{#v.auraId}">{#v.label}</label>
+    </aura:if>
+    <lightning:recordEditForm objectApiName="{#v.sobjectName}">
+        <div class="i2-searchLookupItem-p__right">
+            {#v.body}
+        </div>
+    </lightning:recordEditForm>
+
+</aura:component>

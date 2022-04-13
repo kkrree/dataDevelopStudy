@@ -1,0 +1,25 @@
+<!--
+  * @filename      : lwcUfwContainerDetailCard
+  * @author        : I2MAX
+  * @date          : 2021-03-04
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-04                 I2MAX           Create
+ -->
+<template>
+    <article class={containerClass}>
+    <!--<article class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDesktop">-->
+        <slot name="header"></slot>
+        <slot name="content"></slot>
+        <slot name="footer"></slot>
+        <slot name="quickAction"></slot>
+    </article>
+</template>

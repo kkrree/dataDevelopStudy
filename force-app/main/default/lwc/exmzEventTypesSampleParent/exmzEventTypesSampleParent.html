@@ -1,0 +1,27 @@
+<!--
+  * @filename      : exmzEventTypesSampleParent
+  * @author        : I2MAX
+  * @date          : 2021-03-12
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Event Types Sample Parent
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-12         I2MAX       Create
+ -->
+<template>
+    <div class="slds-box_border">
+        <p>Parent</p>
+        <div class="slds-m-around_large">
+            <!-- slot 에서도 on 이벤트 바인딩이 가능 -->
+            <slot ontest_event_on={handleTestEventOn}></slot>
+            <div>Sample Parent value from Slot on : {eventValueSlotOn}</div>
+            <div>Sample Parent value from on : {eventValue}</div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,31 @@
+<!--
+ - Created by MS on 2021-03-24.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmYROppty"
+                implements="force:appHostable"
+                description="zzExmYROppty">
+
+    <aura:attribute name="str" type="String"/>
+    <aura:attribute name="options" type="List"/>
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+    <lightning:card>
+        {!v.str}
+    </lightning:card>
+
+
+    <lightning:card>
+        <lightning:input name="input" label="Type text..." value="{!v.str}"/>
+        <lightning:button onclick="{!c.doClick}"> Click! </lightning:button>
+    </lightning:card>
+
+    <lightning:card>
+        <lightning:combobox name="combobox" label="Select Option" options="{!v.options}" onchange="{!c.doChange}"/>
+    </lightning:card>
+    
+</aura:component>

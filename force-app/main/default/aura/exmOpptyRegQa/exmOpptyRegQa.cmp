@@ -1,0 +1,74 @@
+<!--
+  * @filename      : exmOpptyRegQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오후 12:26
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오후 12:26    I2MAX            Create
+ -->
+<aura:component extends="c:exmBase"
+                controller="ExmOpptyRegQa"
+                description="exmOpptyRegQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="oppty" type="Opportunity" default="{'sobjectType':'Opportunity'}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="기회 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Opportunity">
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="name" class="slds-size_1-of-2 right-side" fieldName="Name" value="{!v.oppty.Name}"/>
+                                <lightning:inputField aura:id="stage" class="slds-size_1-of-2 left-side" fieldName="StageName" value="{!v.oppty.StageName}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="account" class="slds-size_1-of-2 right-side" fieldName="AccountId" value="{!v.oppty.AccountId}"/>
+                                <lightning:inputField aura:id="amount" class="slds-size_1-of-2 left-side" fieldName="Amount" value="{!v.oppty.Amount}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="probability" class="slds-size_1-of-2 right-side" fieldName="Probability" value="{!v.oppty.Probability}"/>
+                                <lightning:inputField aura:id="closeDate" class="slds-size_1-of-2 left-side" fieldName="CloseDate" value="{!v.oppty.CloseDate}"/>
+                            </div>
+                        </div>
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+                <lightning:button aura:id="btnNext" label="next" variant="brand" onclick="{!c.doNext}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

@@ -1,0 +1,141 @@
+<!--
+ - Created by MS on 2021-04-01.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmYRAccountList"
+                implements="force:appHostable,forceCommunity:availableForAllPageTypes"
+                description="zzExmYRAccountList">
+
+
+    <!-- 컴포넌트와 컨트롤러 연결하기 위한 어트리뷰트 -->
+    <aura:attribute name="str" type="String"/>
+    <aura:attribute name="pageSize" type="List" access="public" default="['10', '15', '20']" description="페이지 사이즈 크기 설정"/>
+
+
+    <!-- 초기화하는 기본 handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="tableEvent" event="c:lacComTableEvent" action="{!c.doMovePage}"/>
+
+
+    <!-- 모달 띄우는 역할 -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+
+<!--    <lightning:card>-->
+<!--        {!v.str}-->
+<!--    </lightning:card>-->
+
+
+<!--    <lightning:card>-->
+<!--        &lt;!&ndash; v.str은 내가 위의 어트리뷰트에서 받아온 str값이 input 안에 value로 아예 들어와버리게끔 설정. &ndash;&gt;-->
+<!--        <lightning:input name="input" label="input text" value="{!v.str}"/>-->
+<!--        <lightning:button onclick="{!c.doClick}"> Click </lightning:button>-->
+<!--    </lightning:card>-->
+
+    <c:lacComContainer>
+
+        <aura:set attribute="header">
+            <c:lacComHeader aura:id="header" type="Account" title="Account" iconName="custom:custom46">
+                <!-- 기본적인 Save, Search Excel 버튼은 액션을 넘겨 처리함. 위치와 형태 고정.-->
+                <aura:set attribute="doSave" value="{!c.doMultiSave}"/>
+                <aura:set attribute="doSearch" value="{!c.doSearch}"/>
+<!--                <aura:set attribute="doExcel" value="{!c.doExcel}"/>-->
+
+                <!-- button 영역에 그 외 나머지 custom button을 넘긴다. -->
+                <aura:set attribute="button">
+                    <lightning:button aura:id="btnInput" label="New" onclick="{!c.doAccReg}"/>
+                </aura:set>
+            </c:lacComHeader>
+        </aura:set>
+
+
+
+        <aura:set attribute="content">
+            <c:lacComBody>
+                <aura:set attribute="searchSection">
+                    <c:lacComSearchBar class="">
+                        <c:lacComSearchItem auraId="SLA__c">
+                            <c:lacComComboBox aura:id="SLA__c" label="SLA__c" isLarge="{#true}" option="{!v.initData.listSla}" value="{!v.reqData.SLA__c}"/>
+                        </c:lacComSearchItem>
+<!--                        <c:lacComSearchLookupItem auraId="accountId" sobjectName="Opportunity" label="Account">-->
+<!--                            <lightning:inputField aura:id="accountId" fieldName="AccountId" variant="label-hidden"/>-->
+<!--                        </c:lacComSearchLookupItem>-->
+<!--                        <c:lacComSearchItem auraId="isWon" label="IsWon">-->
+<!--                            <lightning:input aura:id="isWon" label="" class="slds-m-right_small" type="checkbox-button" checked="{!v.reqData.isWon}"/>-->
+<!--                        </c:lacComSearchItem>-->
+                        <!--페이징 사이즈 조정 (필요시)-->
+<!--                        <c:lacComSearchItem auraId="select">-->
+<!--                            <lightning:select aura:id="select" label="pageSize" onchange="{!c.doSearch}">-->
+<!--                                <aura:iteration items="{!v.pageSize}" var="size">-->
+<!--                                    <option text="{!size}"></option>-->
+<!--                                </aura:iteration>-->
+<!--                            </lightning:select>-->
+<!--                        </c:lacComSearchItem>-->
+<!--                    </c:lacComSearchBar>-->
+<!--                    <c:lacComSearchBar class="slds-m-top_medium">-->
+<!--                        <c:lacComSearchItem auraId="fromDt">-->
+<!--                            <lightning:input aura:id="fromDt" label="From" type="date" value="{!v.reqData.fromDt}"/>-->
+<!--                        </c:lacComSearchItem>-->
+<!--                        <c:lacComSearchItem auraId="toDt">-->
+<!--                            <lightning:input aura:id="toDt" label="To" type="date" value="{!v.reqData.toDt}"/>-->
+<!--                        </c:lacComSearchItem>-->
+                        <c:lacComSearchItem auraId="accName">
+                            <lightning:input aura:id="accName" label="Account Name" class="custom-width" type="text" value="{!v.reqData.name}"/>
+                        </c:lacComSearchItem>
+                        <c:lacComSearchItem auraId="accName">
+                            <lightning:button variant="brand" label="New File" onclick="{!c.doNewFile}"/>
+                        </c:lacComSearchItem>
+                    </c:lacComSearchBar>
+                </aura:set>
+
+                <!-- Table 또는 Body -->
+                <!-- case 1 : simple paging sample -->
+                <c:lacComTableFrame aura:id="table" isPaging="{#true}" simple="{#true}">
+                    <!-- case 2 : numbering paging sample -->
+                    <!--<c:lacComTableFrame aura:id="table" isPaging="{#true}" number="{#true}">-->
+                    <c:lacComTable aura:id="dataTable" hasScroll="{#true}" left="1" hasFixedHeader="{#true}" scrollHeight="300">
+                        <thead aura:id="dataThead">
+                        <tr>
+                            <c:lacComTh title="{!v.labelMap.Account.name}">{!v.labelMap.Account.name}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.phone}">{!v.labelMap.Account.phone}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.ownerid}">{!v.labelMap.Account.ownerid}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.accountnumber}">{!v.labelMap.Account.accountnumber}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.sla__c}">{!v.labelMap.Account.sla__c}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.annualrevenue}">{!v.labelMap.Account.annualrevenue}</c:lacComTh>
+                            <c:lacComTh title="toast">Yeah</c:lacComTh>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <aura:iteration items="{!v.recordList}" var="record" indexVar="idx">
+                            <tr>
+                                <c:lacComTd title="{#record.Name}">
+                                    <a data-recordid="{#record.Id}" onclick="{!c.doNaviService}">
+                                        {#record.Name}
+                                    </a>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.Phone}">{#record.Phone}</c:lacComTd>
+                                <c:lacComTd title="{#record.Owner.Name}">{#record.Owner.Name}</c:lacComTd>
+                                <c:lacComTd title="{#record.AccountNumber}" class="slds-text-align_right">{#record.AccountNumber}</c:lacComTd>
+                                <c:lacComTd title="{#record.SLA__c}">{#record.SLA__c}</c:lacComTd>
+                                <c:lacComTd title="{#record.AnnualRevenue}">{#record.AnnualRevenue}</c:lacComTd>
+                                <c:lacComTd title="toast"><lightning:button label="click" onclick="{!c.doClick}"/></c:lacComTd>
+                            </tr>
+                        </aura:iteration>
+                        </tbody>
+                    </c:lacComTable>
+
+                </c:lacComTableFrame>
+
+            </c:lacComBody>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooter>
+                <lightning:button label="test"/>
+            </c:lacComFooter>
+        </aura:set>
+
+    </c:lacComContainer>
+</aura:component>

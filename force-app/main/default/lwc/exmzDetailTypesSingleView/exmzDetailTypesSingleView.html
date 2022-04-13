@@ -1,0 +1,89 @@
+<!--
+  * @filename      : exmzDetailTypesSingleView
+  * @author        : I2MAX
+  * @date          : 2021-03-09
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Detail Types Single View
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-09         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body has-search-section=true>
+                <!-- ============================================================================
+                ==== layout, layoutItem 을 이용하여 구성
+                ============================================================================= -->
+                <lightning-record-view-form object-api-name="Opportunity" record-id={tempRecordId}>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="OwnerId" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="Amount" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="IsPrivate" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="ExpectedRevenue" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="Name" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="CloseDate" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="AccountId" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="NextStep" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="Type" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="StageName" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="LeadSource" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="12" class="slds-form__item">
+                            <lightning-output-field field-name="Probability" class="slds-form-element_readonly"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-record-view-form>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

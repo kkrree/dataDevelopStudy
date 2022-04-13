@@ -1,0 +1,129 @@
+<!--
+  * @filename      : tutorialAccountList
+  * @author        : I2MAX
+  * @date          : 2021-05-07
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-05-07                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <div slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Tutorial Account List" title="Default">
+                <span slot="buttons">
+                    <!-- Button -->
+                    <lightning-button type=button label="Search" onclick={doSearchAccount}></lightning-button>
+                    <lightning-button label="Csv Export" onclick={doCsvExportWithData}></lightning-button>
+                </span>
+            </c-lwc-ufw-header>
+        </div>
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <div slot="content">
+            <c-lwc-ufw-body has-search-section=true>
+                <!-- ============================================================================
+                ==== Search Section
+                ============================================================================= -->
+                <div slot="searchSection">
+                    <template if:true={objectInfoWired}>
+                        <c-lwc-ufw-search-bar>
+                            <!-- Search Items -->
+                            <c-lwc-ufw-search-item label={accountObjectInfo.fields.Name.label}>
+                                <lightning-input data-id="nameFilter"
+                                                 type="text"
+                                                 label={accountObjectInfo.fields.Name.label}
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-item label={accountObjectInfo.fields.AccountNumber.label}>
+                                <lightning-input data-id="numberFilter"
+                                                 type="text"
+                                                 label={accountObjectInfo.fields.AccountNumber.label}
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-item label={accountObjectInfo.fields.Type.label}>
+                                <c-lwc-ufw-combo-box data-id="typeFilter"
+                                                     label={accountObjectInfo.fields.Type.label}
+                                                     label-hidden=true
+                                                     options={typeFieldOptions}
+                                                     change-handler={fireTypeChange}
+                                                     ontypechange={handleTypeValueChange}>
+                                </c-lwc-ufw-combo-box>
+                            </c-lwc-ufw-search-item>
+                        </c-lwc-ufw-search-bar>
+
+                        <c-lwc-ufw-search-bar custom-class-name="slds-m-top_medium">
+                            <!-- Page Size -->
+                            <c-lwc-ufw-search-item label="Page Size">
+                                <c-lwc-ufw-combo-box data-id="pageSize"
+                                                     label="Page Size"
+                                                     label-hidden=true
+                                                     value="10"
+                                                     options={pageSizeOptions}
+                                                     change-handler={firePageSizeChange}
+                                                     onpagesizechange={handlePageSizeValueChange}>
+                                </c-lwc-ufw-combo-box>
+                            </c-lwc-ufw-search-item>
+                        </c-lwc-ufw-search-bar>
+                    </template>
+                </div>
+                <!-- ============================================================================
+                ==== Table Frame
+                ============================================================================= -->
+                <c-lwc-ufw-table-frame onpreviouspage={handlePreviousPage} onnextpage={handleNextPage}>
+                    <template if:true={accountList}>
+                        <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-table_fixed-layout">
+                            <thead>
+                                <template if:true={objectInfoWired}>
+                                    <tr>
+                                        <th><lightning-formatted-text value={accountObjectInfo.fields.Name.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={accountObjectInfo.fields.AccountNumber.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={accountObjectInfo.fields.Type.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={accountObjectInfo.fields.Phone.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={accountObjectInfo.fields.AnnualRevenue.label}></lightning-formatted-text></th>
+                                    </tr>
+                                </template>
+                            </thead>
+                            <tbody>
+                                <template for:each={accountList} for:item="account">
+                                    <tr key={account.Id}>
+                                        <td class="slds-truncate">
+                                            <a data-record-id={account.Id} onclick={navigateToRecord}>
+                                                <lightning-formatted-text value={account.Name}></lightning-formatted-text>
+                                            </a>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={account.AccountNumber}></lightning-formatted-text>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={account.Type}></lightning-formatted-text>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={account.Phone}></lightning-formatted-text>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-number value={account.AnnualRevenue} format-style="currency"></lightning-formatted-number>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                </c-lwc-ufw-table-frame>
+            </c-lwc-ufw-body>
+        </div>
+    </c-lwc-ufw-container>
+</template>

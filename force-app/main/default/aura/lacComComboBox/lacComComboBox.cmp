@@ -1,0 +1,49 @@
+<!--
+  * @filename      : lacComComboBox
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 9:03
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 콤보박스
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 9:03     I2MAX            Create
+ -->
+<aura:component description="lacComComboBox">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="name" type="String" access="public" description="element name"/>
+    <aura:attribute name="label" type="String" access="public" description="label"/>
+    <aura:attribute name="value" type="String" access="public" description="value"/>
+    <aura:attribute name="option" type="List" access="public" description="combobox option list"/>
+    <aura:attribute name="isLabelHidden" type="Boolean" access="public" default="{!false}" description="label 숨김"/>
+    <aura:attribute name="disabled" type="Boolean" access="public" default="{!false}" description="변경 불가"/>
+    <aura:attribute name="onchange" type="Aura.Action" access="public" description="값 변경 시 Action"/>
+    <aura:attribute name="class" type="String" access="public" default="slds-show--large" description="slds class"/>
+
+    <!-- Combobox size attribute. default는 small size. -->
+    <aura:attribute name="isMedium" type="Boolean" access="public" default="{!false}" description="medium size combobox"/>
+    <aura:attribute name="isLarge" type="Boolean" access="public" default="{!false}" description="large size combobox"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <lightning:combobox aura:id="select"
+                        name="{#v.name}"
+                        label="{#v.label}"
+                        options="{!v.option}"
+                        value="{!v.value}"
+                        onchange="{!v.onchange}"
+                        class="{#v.class + (v.isLarge ? ' custom-input__large' : (v.isMedium ? ' custom-input__medium' : ' custom-input__small'))}"
+                        disabled="{!v.disabled}"
+                        variant="{!v.isLabelHidden ? 'label-hidden' : 'standard'}"
+    />
+</aura:component>

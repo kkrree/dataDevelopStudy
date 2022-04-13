@@ -1,0 +1,61 @@
+<!--
+  * @filename      : exmzModuleTypesSalesforce
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Module Types Salesforce
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-11         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+
+                <h2 class="slds-page-header__title">모듈 샘플 개발중(@salesforce)</h2>
+
+                <h1 class="slds-card__header-title">1. 공통 속성</h1>
+                <div>GuestUser : {gComIsGuestUser}</div>
+                <div>LoginUserId : {gComLoginUserId}</div>
+                <div>formFactor : {gfnComFormFactor}</div>
+                <div>LANG : {gComLang}</div>
+
+                <h1 class="slds-card__header-title">2. @wire call server action</h1>
+                <template if:true={opportunityObject.data}>
+                    <template if:true={opportunity}>
+                        <div>{opportunityObject.data.fields.Amount.label} : {opportunity.Amount}</div>
+                    </template>
+                </template>
+
+                <h1 class="slds-card__header-title">3. call server action</h1>
+                <lightning-button label="callServer_Object" onclick={doCallServerObject}></lightning-button>
+                <template if:true={opportunityObject.data}>
+                    <template if:true={opportunity1}>
+                        <div>{opportunityObject.data.fields.Amount.label} : {opportunity1.Amount}</div>
+                    </template>
+                </template>
+                <lightning-button label="callServer_List" onclick={doCallServerList}></lightning-button>
+                <template if:true={opportunityObject.data}>
+                    <template if:true={opptyList}>
+                        <div>size : {opptyList.length} : {opptyListSize}</div>
+                    </template>
+                </template>
+
+                <h1 class="slds-card__header-title">4. custom label</h1>
+                <div>{_labelComBtnSave}</div>
+
+                <h1 class="slds-card__header-title">5. schema</h1>
+                <div>opportunity sobject name : {opportunityObjectName}</div>
+                <div>stageName field name : {stageNameField}</div>
+
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

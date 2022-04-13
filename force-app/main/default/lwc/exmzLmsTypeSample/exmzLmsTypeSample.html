@@ -1,0 +1,33 @@
+<!--
+  * @filename      : exmzLmsTypeSample
+  * @author        : I2MAX
+  * @date          : 2021-03-25
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Lms Type Sample
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-25         I2MAX       Create
+ -->
+<template>
+    <div class='slds-box_border slds-p-around_large'>
+        <p>LMS sendMessage</p>
+        <div class="slds-m-around_large">
+            <div class="slds-form-element_horizontal slds-box_horizontal">
+                <lightning-input label='publish message' value={publishMessage} onchange={setPublishMessage}></lightning-input>
+                <lightning-button label='publishMC' onclick={publishMC}></lightning-button>
+            </div>
+        </div>
+    </div>
+    <div class='slds-box_border slds-p-around_large'>
+        <p>LMS receiveMessage(Sample1)</p>
+        <div class="slds-m-around_large">
+            <div>Sample1 receiveMessage : {receivedMessage}</div>
+        </div>
+    </div>
+</template>

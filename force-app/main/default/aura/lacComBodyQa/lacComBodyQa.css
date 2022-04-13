@@ -1,0 +1,59 @@
+/****************************************************************************************
+ * @filename      : lacComBodyQa.css
+ * @author        : I2MAX
+ * @date          : 2021-01-27 오전 9:04
+ * @group         :
+ * @group-content :
+ * @description   :
+ * @tester        :
+ * @reference     :
+ * @release       : v1.0.0
+ * @copyright     : Copyright © I2max. All Rights Reserved.
+ * @modification Log
+ * ===============================================================
+ * ver     date                    author        description
+ * ===============================================================
+   0.1     2021-01-27 오전 9:04     I2MAX          Create
+ ****************************************************************************************/
+.THIS {
+}
+
+/*---------------------------------------------------------------
+    Media Query
+---------------------------------------------------------------*/
+/* 너비 */
+@media only screen and (min-width: 1750px) {
+    .THIS.slds-modal__content {
+        overflow-y: auto !important;
+        min-height: 10vh !important;
+        max-height: 25vh !important;
+    }
+}
+
+/* 높이 */
+@media only screen and (max-height: 400px) {
+
+    .THIS.slds-modal__content {
+        overflow-y:auto !important;
+        min-height: 10vh !important;
+        max-height: 11vh !important;
+    }
+}
+
+@media only screen and (min-height: 400px) and (max-height: 800px) {
+
+    .THIS.slds-modal__content {
+        overflow-y:auto !important;
+        min-height: 10vh !important;
+        max-height: 15vh !important;
+    }
+}
+
+@media only screen and (min-height: 800px) and (max-height: 1200px) {
+
+    .THIS.slds-modal__content {
+        overflow-y:auto !important;
+        min-height: 10vh !important;
+        max-height: 30vh !important;
+    }
+}

@@ -1,0 +1,62 @@
+<!--
+  * @filename      : lacComService
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 9:19
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 Service Component
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 9:19     I2MAX            Create
+ -->
+<aura:component extends="c:lacComBase"
+                controller="LacComService"
+                description="lacComService">
+
+    <!-- =============================================================================================================
+    ==== method
+    ============================================================================================================== -->
+    <!-- ===========================================================
+    ==== Sobject label 정보 불러오는 method.
+    ============================================================ -->
+    <aura:method name="doGetMultiSObjectLabel" access="public">
+        <aura:attribute name="targetObjectList" type="List" description="대상이 되는 sobject list"/>
+        <aura:attribute name="callback" type="Function" description="가져온 label값을 넘겨주는 callback function"/>
+    </aura:method>
+
+    <!-- ===========================================================
+    ==== single table csv export method.
+    ============================================================ -->
+    <aura:method name="doCsvExport" access="public">
+        <aura:attribute name="cmp" type="Aura.Component" description="실 table이 존재하는 component"/>
+        <aura:attribute name="tableName" type="String" description="table의 aura id"/>
+        <aura:attribute name="fileName" type="String" description="export 될 파일의 이름"/>
+    </aura:method>
+
+    <!-- ===========================================================
+    ==== single table csv export method.(레코드 데이터 이용)
+    ============================================================ -->
+    <aura:method name="doCsvExportWithData" access="public">
+        <aura:attribute name="cmp" type="Aura.Component" description="실 table이 존재하는 component"/>
+        <aura:attribute name="fileName" type="String" required="true" description="export 될 파일의 이름"/>
+        <aura:attribute name="theadList" type="List" description="사용자 지정 thead 항목 keys"/>
+        <aura:attribute name="theadAuraId" type="String" description="thead의 aura:id - 렌더링된 table인 경우에 사용"/>
+        <aura:attribute name="recordList" type="List" description="data record list"/>
+        <aura:attribute name="callback" type="Function" required="true" description="사용자 정의 tbody 매핑 함수"/>
+    </aura:method>
+
+    <!-- ===========================================================
+    ==== multi table csv export method.
+    ============================================================ -->
+    <aura:method name="doCsvMultiExport" access="public">
+        <aura:attribute name="cmp" type="Aura.Component" description="실 table이 존재하는 component"/>
+        <aura:attribute name="tableNames" type="List" description="table의 aura id들"/>
+        <aura:attribute name="fileName" type="String" description="export 될 파일의 이름"/>
+    </aura:method>
+</aura:component>

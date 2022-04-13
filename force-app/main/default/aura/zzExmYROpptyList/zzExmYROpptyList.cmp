@@ -1,0 +1,135 @@
+<!--
+ - Created by MS on 2021-03-24.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmYROpptyList"
+                implements="force:appHostable,forceCommunity:availableForAllPageTypes"
+                description="zzExmYROpptyList">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="pageSize" type="List" access="public" default="['10', '15', '20']" description="페이지 사이즈 크기 설정"/>
+
+
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="tableEvent" event="c:lacComTableEvent" action="{!c.doMovePage}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+
+
+    <c:lacComContainer>
+        <!-- header 부분 -->
+        <aura:set attribute="header">
+            <c:lacComHeader aura:id="header" type="Opportunity" title="Opportunity" iconName="custom:custom46">
+                <aura:set attribute="doSave" value="{!c.doMultiSave}"/>
+                <aura:set attribute="doSearch" value="{!c.doSearch}"/>
+                <aura:set attribute="doExcel" value="{!c.doExcel}"/>
+                <aura:set attribute="button">
+                    <lightning:button aura:id="btnInput" label="New" onclick="{!c.doOpptyReg}"/>
+                </aura:set>
+            </c:lacComHeader>
+        </aura:set>
+
+        <!-- content 부분 -->
+        <aura:set attribute="content">
+            <c:lacComBody>
+                <aura:set attribute="searchSection">
+                    <c:lacComSearchBar class="">
+                        <c:lacComSearchItem auraId="stage">
+                            <c:lacComComboBox aura:id="stage" label="Stage" isLarge="{#true}" option="{!v.initData.stageList}" value="{!v.reqData.stage}"/>
+                        </c:lacComSearchItem>
+                        <c:lacComSearchLookupItem auraId="accountId" sobjectName="Opportunity" label="Account">
+                            <lightning:inputField aura:id="accountId" fieldName="AccountId" variant="label-hidden"/>
+                        </c:lacComSearchLookupItem>
+<!--                        <c:lacComSearchItem auraId="isWon" label="IsWon">-->
+<!--                            <lightning:input aura:id="isWon" label="" class="slds-m-right_small" type="checkbox-button" checked="{!v.reqData.isWon}"/>-->
+<!--                        </c:lacComSearchItem>-->
+                        <!--페이징 사이즈 조정 (필요시)-->
+<!--                        <c:lacComSearchItem auraId="select">-->
+<!--                            <lightning:select aura:id="select" label="pageSize" onchange="{!c.doSearch}">-->
+<!--                                <aura:iteration items="{!v.pageSize}" var="size">-->
+<!--                                    <option text="{!size}"></option>-->
+<!--                                </aura:iteration>-->
+<!--                            </lightning:select>-->
+<!--                        </c:lacComSearchItem>-->
+                        <c:lacComSearchItem auraId="opptyName">
+                            <lightning:input aura:id="opptyName" label="Opportunity Name" class="custom-width" type="text" value="{!v.reqData.name}"/>
+                        </c:lacComSearchItem>
+                    </c:lacComSearchBar>
+                    <c:lacComSearchBar class="slds-m-top_medium">
+<!--                        <c:lacComSearchItem auraId="fromDt">-->
+<!--                            <lightning:input aura:id="fromDt" label="From" type="date" value="{!v.reqData.fromDt}"/>-->
+<!--                        </c:lacComSearchItem>-->
+<!--                        <c:lacComSearchItem auraId="toDt">-->
+<!--                            <lightning:input aura:id="toDt" label="To" type="date" value="{!v.reqData.toDt}"/>-->
+<!--                        </c:lacComSearchItem>-->
+
+                    </c:lacComSearchBar>
+                </aura:set>
+
+                <!-- Table 또는 Body -->
+                <!-- case 1 : simple paging sample -->
+                <c:lacComTableFrame aura:id="table" isPaging="{#true}" simple="{#true}">
+                    <!-- case 2 : numbering paging sample -->
+                    <!--<c:lacComTableFrame aura:id="table" isPaging="{#true}" number="{#true}">-->
+                    <c:lacComTable aura:id="dataTable" hasScroll="{#true}" left="1" hasFixedHeader="{#true}" scrollHeight="300">
+                        <thead aura:id="dataThead">
+                        <tr>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.name}">{!v.labelMap.Opportunity.name}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.stagename}">{!v.labelMap.Opportunity.stagename}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Account.name}">{!v.labelMap.Account.name}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.amount}">{!v.labelMap.Opportunity.amount}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.probability}">{!v.labelMap.Opportunity.probability}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.closedate}">{!v.labelMap.Opportunity.closedate}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.iswon}">{!v.labelMap.Opportunity.iswon}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.Opportunity.ownerid}">{!v.labelMap.Opportunity.ownerid}</c:lacComTh>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <aura:iteration items="{!v.recordList}" var="record" indexVar="idx">
+                            <tr>
+                                <c:lacComTd title="{#record.Name}">
+                                    <a data-recordid="{#record.Id}" onclick="{!c.doNaviService}">
+                                        {#record.Name}
+                                    </a>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.StageName}">{#record.StageName}</c:lacComTd>
+                                <c:lacComTd title="{#record.Account.Name}">{#record.Account.Name}</c:lacComTd>
+                                <c:lacComTd title="{#record.Amount}" class="slds-text-align_right">
+                                    <lightning:formattedNumber aura:id="dsfa" value="{#record.Amount}" maximumFractionDigits="3"/>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.Probability}" class="slds-text-align_right">{#record.Probability}</c:lacComTd>
+                                <c:lacComTd title="{#record.CloseDate}">{#record.CloseDate}</c:lacComTd>
+                                <c:lacComTd title="{#record.IsWon}"><lightning:input label="" type="checkbox" checked="{#record.IsWon}" value="{#record.IsWon}" disabled="{#true}"/></c:lacComTd>
+                                <c:lacComTd title="{#record.Owner.Name}">{#record.Owner.Name}</c:lacComTd>
+                            </tr>
+                        </aura:iteration>
+                        </tbody>
+                    </c:lacComTable>
+                </c:lacComTableFrame>
+            </c:lacComBody>
+        </aura:set>
+
+        <!-- footer 부분 -->
+        <aura:set attribute="footer">
+            <c:lacComFooter>
+                <lightning:button label="test"/>
+            </c:lacComFooter>
+        </aura:set>
+
+    </c:lacComContainer>
+</aura:component>

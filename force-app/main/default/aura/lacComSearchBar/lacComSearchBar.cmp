@@ -1,0 +1,31 @@
+<!--
+  * @filename      : lacComSearchBar
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 10:07
+  * @group         : 
+  * @group-content : 
+  * @description   : Search 영역 내 공통 search bar component
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 10:07    I2MAX            Create
+ -->
+<aura:component description="lacComSearchBar">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="class" type="String" access="public" description="추가 slds"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <ul class="{#'slds-list_horizontal ' + v.class}">
+        {#v.body}
+    </ul>
+</aura:component>

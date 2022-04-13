@@ -1,0 +1,66 @@
+<!--
+  * @filename      : exmOpptyDetailCard
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-12 오전 7:45
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-12 오전 7:45     I2MAX            Create
+ -->
+<aura:component extends="c:exmBase"
+                controller="ExmOpptyDetailCard"
+                implements="force:hasRecordId,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+                description="exmOpptyDetailCard">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="oppty" type="Opportunity" default="{'sobjectType':'Opportunity'}"/>
+
+    <!-- =============================================================================================================
+    ==== event
+    ============================================================================================================== -->
+    <!-- record detail page 내용 변경 시, 변경된 내용 반영 -->
+    <aura:dependency resource="markup://force:editRecord" type="EVENT"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerDetailCard hasContainerBorder="{#false}">
+        <!-- Header -->
+        <aura:set attribute="header">
+            <c:lacComHeaderDetailCard title="Opportunity" iconName="standard:opportunity">
+                <aura:set attribute="button">
+                    <lightning:button label="{#$Label.c.COM_BTN_SAVE}" onclick="{!c.doSave}"/>
+                </aura:set>
+            </c:lacComHeaderDetailCard>
+        </aura:set>
+
+        <!-- Body -->
+        <aura:set attribute="content">
+            <c:lacComBodyDetailCard>
+                <lightning:recordEditForm objectApiName="Opportunity" recordId="{#v.recordId}" recordTypeId="">
+                    <div class="slds-list_horizontal">
+                        <lightning:inputField fieldName="Amount" value="{!v.oppty.Amount}"/>
+                        <lightning:inputField fieldName="CloseDate" value="{!v.oppty.CloseDate}"/>
+                    </div>
+                </lightning:recordEditForm>
+            </c:lacComBodyDetailCard>
+        </aura:set>
+
+        <!-- Footer -->
+        <aura:set attribute="footer">
+            <c:lacComFooterDetailCard>
+                <lightning:button label="test"/>
+            </c:lacComFooterDetailCard>
+        </aura:set>
+    </c:lacComContainerDetailCard>
+</aura:component>

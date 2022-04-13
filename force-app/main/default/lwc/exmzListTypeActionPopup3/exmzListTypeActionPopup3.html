@@ -1,0 +1,113 @@
+<!--
+  * @filename      : exmzListTypeActionPopup3
+  * @author        : I2MAX
+  * @date          : 2021-03-16
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-16                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container-qa show-modal={showModal} is-medium=true>
+        <!-- ============================================================================
+        ==== Header
+        ============================================================================= -->
+        <span slot="header">
+            <c-lwc-ufw-header-qa header-string="Edit LineItem"></c-lwc-ufw-header-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Content
+        ============================================================================= -->
+        <span slot="content">
+            <c-lwc-ufw-body-qa>
+                <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-no-row-hover slds-table_fixed-layout">
+                    <!-- ============================================================================
+                    ==== Table Header
+                    ============================================================================= -->
+                    <thead>
+                        <tr>
+                            <template if:true={lineItemInfo.data}>
+                                <th><lightning-formatted-text value={lineItemInfo.data.fields.Product2Id.label}></lightning-formatted-text></th>
+                                <th><lightning-formatted-text value={lineItemInfo.data.fields.Quantity.label}></lightning-formatted-text></th>
+                                <th><lightning-formatted-text value={lineItemInfo.data.fields.UnitPrice.label}></lightning-formatted-text></th>
+                                <th><lightning-formatted-text value={lineItemInfo.data.fields.TotalPrice.label}></lightning-formatted-text></th>
+                                <th></th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <!-- ============================================================================
+                    ==== Table Body
+                    ============================================================================= -->
+                    <tbody>
+                        <!-- LineItem 목록 -->
+                        <template if:true={hasLineItem} for:each={wrapperList} for:item="wrapper">
+                            <tr key={wrapper.idx}>
+                                <!-- 기입력 lineItem -->
+                                <template if:true={wrapper.lineItem.Id}>
+                                    <td class="slds-truncate"><lightning-formatted-text value={wrapper.lineItem.Name}></lightning-formatted-text></td>
+                                    <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.Quantity}></lightning-formatted-number></td>
+                                    <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.UnitPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                                    <td class="slds-truncate"><lightning-formatted-number value={wrapper.lineItem.TotalPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                                </template>
+                                <!-- 신규 LineItem -->
+                                <template if:false={wrapper.lineItem.Id}>
+                                    <td>
+                                        <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                            <lightning-input-field field-name="Product2Id" value={wrapper.lineItem.Product2Id} data-index={wrapper.idx} onchange={handleLineItemChange} variant="label-hidden"></lightning-input-field>
+                                        </lightning-record-edit-form>
+                                    </td>
+                                    <td>
+                                        <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                            <lightning-input-field field-name="Quantity" value={wrapper.lineItem.Quantity} data-index={wrapper.idx} onchange={handleLineItemChange} variant="label-hidden"></lightning-input-field>
+                                        </lightning-record-edit-form>
+                                    </td>
+                                    <td>
+                                        <lightning-record-edit-form object-api-name="OpportunityLineItem">
+                                            <lightning-input-field field-name="UnitPrice" value={wrapper.lineItem.UnitPrice} data-index={wrapper.idx} onchange={handleLineItemChange} variant=label-hidden></lightning-input-field>
+                                        </lightning-record-edit-form>
+                                    </td>
+                                    <td><lightning-formatted-number value={wrapper.totalPrice} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number></td>
+                                </template>
+                                <!-- 공통 Action 버튼 -->
+                                <td>
+                                    <lightning-button-menu>
+                                        <lightning-menu-item icon-name="utility:delete" label="Delete" data-index={wrapper.idx} onclick={doDeleteLineItem}></lightning-menu-item>
+                                    </lightning-button-menu>
+                                </td>
+                            </tr>
+                        </template>
+                        <!-- LineItem 없는 경우 -->
+                        <template if:false={hasLineItem}>
+                            <tr>
+                                <td colspan="5">
+                                    <lightning-formatted-text value="LineItem Empty"></lightning-formatted-text></td>
+                            </tr>
+                        </template>
+                        <!-- Add Row -->
+                        <tr>
+                            <td colspan="5" class="addRowButton">
+                                <lightning-formatted-text class="slds-align_absolute-center" value="Add line item" onclick={addLineItem}></lightning-formatted-text>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </c-lwc-ufw-body-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Footer
+        ============================================================================= -->
+        <span slot="footer">
+            <c-lwc-ufw-footer-qa>
+                <lightning-button label="Cancel" onclick={close}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={save}></lightning-button>
+            </c-lwc-ufw-footer-qa>
+        </span>
+    </c-lwc-ufw-container-qa>
+</template>

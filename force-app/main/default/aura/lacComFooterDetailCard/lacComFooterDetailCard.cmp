@@ -1,0 +1,41 @@
+<!--
+  * @filename      : lacComFooterDetailCard
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 11:06
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 11:06    I2MAX            Create
+ -->
+<aura:component description="lacComFooterDetailCard">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="isDetailFooterLeft" type="Boolean" access="public" default="{#false}" description="footer component 위치"/>
+    <aura:attribute name="isDetailFooterRight" type="Boolean" access="public" default="{#(v.isCommunity) ? true : false}" description="footer component 위치"/>
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="detailFooterDirection" type="String" access="private"
+                    default="{#(v.isDetailFooterLeft) ? 'slds-text-align_left' : (v.isDetailFooterRight) ? 'slds-text-align_right' : ''}"
+                    description="Footer 위치"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <div class="slds-card__footer">
+        <div class="{#v.detailFooterDirection}">
+            {#v.body}
+        </div>
+    </div>
+</aura:component>

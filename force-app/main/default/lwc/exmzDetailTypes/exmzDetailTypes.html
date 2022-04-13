@@ -1,0 +1,36 @@
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- Header -->
+        <span slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Exmaple" title="Record Detail Types">
+            </c-lwc-ufw-header>
+        </span>
+        <!-- Body -->
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <div class="slds-p-left_small slds-p-right_small">
+                    <lightning-tabset>
+                        <lightning-tab label="Detail Default(Edit)">
+                            <c-exmz-detail-types-default temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-default>
+                        </lightning-tab>
+                        <lightning-tab label="Detail Default(View)">
+                            <c-exmz-detail-types-default-view temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-default-view>
+                        </lightning-tab>
+                        <lightning-tab label="Detail Single(Edit)">
+                            <c-exmz-detail-types-single temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-single>
+                        </lightning-tab>
+                        <lightning-tab label="Detail Single(View)">
+                            <c-exmz-detail-types-single-view temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-single-view>
+                        </lightning-tab>
+                        <lightning-tab label="Detail Box(horizontal)">
+                            <c-exmz-detail-types-box temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-box>
+                        </lightning-tab>
+                        <lightning-tab label="Detail Box(history)">
+                            <c-exmz-detail-types-box-history temp-record-id={tempRecordId} opportunity={opportunity}></c-exmz-detail-types-box-history>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </div>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

@@ -1,0 +1,72 @@
+<!--
+  * @filename      : exmzCardTypeDefault
+  * @author        : I2MAX
+  * @date          : 2021-03-18
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-18                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container-detail-card has-container-border=true>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <c-lwc-ufw-header-detail-card slot="header" icon-name="standard:opportunity" title="Card Example">
+            <template if:false={buttonInvisible}>
+                <lightning-button label="Popup" onclick={renderPopup}></lightning-button>
+            </template>
+        </c-lwc-ufw-header-detail-card>
+
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <c-lwc-ufw-body-detail-card slot="content">
+            <template if:true={objectInfoWired}>
+                <!-- =================================================================
+                = <lightning-record-edit-form> + <slot>
+                = <lightning-input-field> 자체 Picklist Dependency 지원
+                ================================================================= -->
+                <lightning-record-edit-form object-api-name='Opportunity' record-id={recordId}>
+                    <lightning-input-field field-name='Amount' data-id="amount"></lightning-input-field>
+                    <lightning-input-field field-name="AccountId" data-id="accountId"></lightning-input-field>
+                    <lightning-input-field field-name='CloseDate' data-id="closeDate"></lightning-input-field>
+<!--                <lightning-input-field field-name='Picklist1__c' data-id="picklist1"></lightning-input-field>-->
+<!--                <lightning-input-field field-name="Picklist2__c" data-id="picklist2"></lightning-input-field>-->
+                </lightning-record-edit-form>
+                <!-- =================================================================
+                = <lightning-input> + <slot>
+                = 표준 모듈 uiObjectInfoApi 를 통해 Picklist Dependency 처리
+                ================================================================= -->
+                <lightning-combobox label={opportunityInfo.fields.Picklist1__c.label} data-id="picklist1" options={picklistOption1} onchange={handleDependentFieldOptions}></lightning-combobox>
+                <lightning-combobox label={opportunityInfo.fields.Picklist2__c.label} data-id="picklist2" options={picklistOption2} disabled={dependentFieldDisableFlag}></lightning-combobox>
+            </template>
+        </c-lwc-ufw-body-detail-card>
+
+        <!-- ============================================================================
+        ==== Footer Slot
+        ============================================================================= -->
+        <template if:false={buttonInvisible}>
+            <c-lwc-ufw-footer-detail-card slot="footer" is-detail-footer-right=true>
+                <lightning-button label={saveLabel} variant="brand" onclick={doSave}></lightning-button>
+            </c-lwc-ufw-footer-detail-card>
+        </template>
+
+        <!-- ============================================================================
+        ==== Popup
+        ============================================================================= -->
+        <div slot="quickAction">
+            <c-lwc-ufw-dynamic-render class="quickActionRender">
+                <c-exmz-list-type-action-popup-2 onupdaterecord={handleReload}></c-exmz-list-type-action-popup-2>
+            </c-lwc-ufw-dynamic-render>
+        </div>
+
+    </c-lwc-ufw-container-detail-card>
+</template>

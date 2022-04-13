@@ -1,0 +1,31 @@
+<!--
+  * @filename      : exmzWrapperSample
+  * @author        : I2MAX
+  * @date          : 2021-03-16
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Wrapper Sample
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-16         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <div class="slds-box_border slds-p-around_large">
+                    <p>LWC Component</p>
+                    <div class="slds-m-around_large">
+                        <lightning-button label="fireEventFromLWC" onclick={fireEventFromLWC}></lightning-button>
+                        <lightning-button label="firePubSubEventFromLWC" onclick={firePubSubEventFromLWC}></lightning-button>
+                    </div>
+                </div>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

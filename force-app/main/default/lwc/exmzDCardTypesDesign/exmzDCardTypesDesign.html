@@ -1,0 +1,42 @@
+<!--
+  * @filename      : exmzDCardTypesDesign
+  * @author        : I2MAX
+  * @date          : 2021-04-07
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-04-07                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container-detail-card has-container-border=true>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <c-lwc-ufw-header-detail-card slot="header" icon-name="standard:opportunity" title="Card Example">
+        </c-lwc-ufw-header-detail-card>
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <c-lwc-ufw-body-detail-card slot="content">
+            <template if:true={fieldNames}>
+                <lightning-record-edit-form object-api-name="Opportunity" record-id={recordId}>
+                    <template for:each={fieldNames} for:item="fieldName">
+                        <lightning-input-field key={fieldName} field-name={fieldName}></lightning-input-field>
+                    </template>
+                </lightning-record-edit-form>
+            </template>
+        </c-lwc-ufw-body-detail-card>
+        <!-- ============================================================================
+        ==== Footer Slot
+        ============================================================================= -->
+        <c-lwc-ufw-footer-detail-card slot="footer" is-detail-footer-right=true>
+        </c-lwc-ufw-footer-detail-card>
+    </c-lwc-ufw-container-detail-card>
+</template>

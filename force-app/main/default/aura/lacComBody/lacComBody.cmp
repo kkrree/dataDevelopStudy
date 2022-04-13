@@ -1,0 +1,59 @@
+<!--
+  * @filename      : lacComBody
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2020-12-29 오전 10:35
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 component body container
+  *                : body 안에 search 영역 존재시
+  *                : 기본 card UI가 기본
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2020-12-29 오전 10:35    I2MAX            Create
+ -->
+<aura:component description="lacComBody">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="searchSection" type="Aura.Component[]" access="public" description="검색 영역"/>
+    <aura:attribute name="isQuickAction" type="Boolean" access="public" default="{#false}" description=""/>
+    <aura:attribute name="isDetailCard" type="Boolean" access="public" default="{#false}" description=""/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+
+<!--    <lightning:card>-->
+    <aura:if isTrue="{#and(not(v.isQuickAction), not(v.isDetailCard))}">
+        <lightning:card>
+            <aura:if isTrue="{!not(empty(v.searchSection))}">
+                <div class="slds-form--inline slds-m-around_small">
+                    {#v.searchSection}
+                </div>
+            </aura:if>
+
+            {#v.body}
+        </lightning:card>
+
+        <aura:set attribute="else">
+            <div style="background-color: white;">
+                <aura:if isTrue="{!not(empty(v.searchSection))}">
+                    <div class="slds-form--inline slds-m-around_small">
+                        {#v.searchSection}
+                    </div>
+                </aura:if>
+
+                {#v.body}
+            </div>
+        </aura:set>
+    </aura:if>
+
+<!--    </lightning:card>-->
+</aura:component>

@@ -1,0 +1,40 @@
+<!--
+  * @filename      : lwcUfwHeaderDetailCard
+  * @author        : I2MAX
+  * @date          : 2021-03-04
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-04                 I2MAX           Create
+ -->
+<template>
+    <div class="slds-grid slds-page-header forceRelatedListCardHeader">
+        <header class="slds-media slds-media--center slds-has-flexi-truncate">
+            <div class="slds-media__figure stencil slds-avatar slds-avatar_small">
+                <div class="extraSmall forceEntityIcon">
+                    <lightning-icon icon-name={iconName}></lightning-icon>
+                </div>
+            </div>
+            <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                    <span class="slds-card__header-link baseCard__header-title-container slds-truncate slds-m-right--xx-small" title={title}>
+                        {title}
+                    </span>
+                </h2>
+            </div>
+        </header>
+        <div class="slds-no-flex">
+            <div class="actionsContainer">
+                <!-- TODO : Button 영역 Dynamic 처리-->
+                <slot></slot>
+            </div>
+        </div>
+    </div>
+</template>

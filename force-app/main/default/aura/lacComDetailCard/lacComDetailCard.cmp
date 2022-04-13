@@ -1,0 +1,60 @@
+<!--
+  * @filename      : lacComDetailCard
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-12 오전 7:28
+  * @group         : 
+  * @group-content : 
+  * @description   : Record Detail page 내 관련 목록 형식의 화면
+  *                : Record Detail page 내에 주로 사용
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-12 오전 7:28     I2MAX            Create
+ -->
+<aura:component extends="c:lacComBase"
+                description="lacComDetailCard">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="detailHeader" type="Aura.Component[]" access="public" description="Header part component"/>
+    <aura:attribute name="detailFooter" type="Aura.Component[]" access="public" description="Footer part component"/>
+    <aura:attribute name="isDetailFooterLeft" type="Boolean" access="public" default="{#false}" description="footer component 위치"/>
+    <aura:attribute name="isDetailFooterRight" type="Boolean" access="public" default="{#(v.isCommunity) ? true : false}" description="footer component 위치"/>
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="detailFooterDirection" type="String" access="private"
+                    default="{#(v.isDetailFooterLeft) ? 'slds-text-align_left' : (v.isDetailFooterRight) ? 'slds-text-align_right' : ''}"
+                    description="Footer 위치"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <article class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDesktop">
+        <!-- Header -->
+        {#v.detailHeader}
+
+        <!-- Body -->
+        <div class="previewMode MEDIUM forceRelatedListPreview slds-m-around_small">
+            <div class="useHeaderBarFix forceBaseListView forceRelatedListPreviewGrid">
+                {#v.body}
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <aura:if isTrue="{#not(empty(v.detailFooter))}">
+            <div class="slds-card__footer">
+                    <div class="{#v.detailFooterDirection}">
+                        {#v.detailFooter}
+                    </div>
+            </div>
+        </aura:if>
+    </article>
+</aura:component>

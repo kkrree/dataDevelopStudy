@@ -1,0 +1,79 @@
+<!-- /**
+ * 본 소프트웨어는 관련 법률에 따라 보호되는 삼성의 지식재산 및 영업비밀 입니다.
+ * 본 소프트웨어를 권한 없이 사용하거나 삼성의 사전 서면 동의 없이 제3자에게 공개하는 행위는 엄격히 금지되어 있으며
+ * 위반 시 귀하는 무단 사용 또는 비밀 유지 의무 위반에 대해 법적인 책임을 져야 합니다.
+ *
+ * This software is the intellectual property and confidential information of Samsung Electronics, Co., Ltd.
+ * (“Samsung”) protected by applicable laws. The unauthorized use or disclosure of the software to any third
+ * party without the prior written consent of Samsung is strictly prohibited, and you should be legally
+ * responsible for the unauthorized use or violation of confidentiality obligation.
+ */ -->
+<!--
+** @filename     : testMergerQAction
+* @projectname   : I2MAX 공통 소스 오그
+* @author        : NURI CHOI
+* @date          : 2021-07-02 오후 1:33
+* @group         :
+* @group-content :
+* @description   :
+* @tester        :
+* @reference     :
+* @release       : v1.0.0
+* @modification Log
+* ===============================================================
+* ver     date             author              description
+* ===============================================================
+  0.1     2021-07-02         NURI CHOI         Create
+-->
+
+<!-- Test Merger Q Action -->
+<template>
+    <c-lwc-ufw-object-quick-action header="test Merger Quick Action">
+        <div slot="contents">
+            <c-lwc-ufw-body-qa>
+                <lightning-layout  class="slds-m-around_xxx-small">
+                    <lightning-layout-item  size="5" class="slds-form__item">
+                        <c-lwc-ufw-combo-box label="Stage"
+                                             name="Stage"
+                                             options={stageOptions}
+                                             change-handler={fireStageChangeEvent}
+                                             onstagechange={handleStageChangeEvent}>
+
+                        </c-lwc-ufw-combo-box>
+                    </lightning-layout-item>
+                    <lightning-layout-item  size="5" class="slds-form__item">
+                        <lightning-radio-group label="File Format"
+                                               name="format"
+                                               options={formatOptions}
+                                               value={formatValue}
+                                               onchange={handleFormatChange}
+                                               type="radio"
+                                               variant="label-inline">
+                        </lightning-radio-group>
+                    </lightning-layout-item>
+                    <lightning-layout-item  size="2" >
+                        <lightning-button label="Search" onclick={searchFileList}></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <template if:true={fileList}>
+                    <lightning-dual-listbox label="Select Files To Merge"
+                                            name="files"
+                                            source-label="Available"
+                                            selected-label="Selected"
+                                            options={fileList}
+                                            onchange={handleFileListChange}>
+                    </lightning-dual-listbox>
+
+                </template>
+
+            </c-lwc-ufw-body-qa>
+        </div>
+
+        <div slot="footer">
+            <lightning-button label="Cancel" onclick={fireCloseEvent}></lightning-button>
+            <lightning-button label="Merge" variant="brand" onclick={callMerge} disabled={isDisabled}></lightning-button>
+        </div>
+    </c-lwc-ufw-object-quick-action>
+
+</template>

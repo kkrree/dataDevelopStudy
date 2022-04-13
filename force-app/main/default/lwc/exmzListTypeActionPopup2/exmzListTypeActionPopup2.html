@@ -1,0 +1,70 @@
+<!--
+  * @filename      : exmzListTypeActionPopup2
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-11                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container-qa show-modal={showModal}>
+        <!-- ============================================================================
+        ==== Header
+        ============================================================================= -->
+        <span slot="header">
+            <c-lwc-ufw-header-qa header-string="Edit Record"></c-lwc-ufw-header-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Content
+        ============================================================================= -->
+        <span slot="content">
+            <c-lwc-ufw-body-qa>
+                <template if:true={opportunity}>
+                    <lightning-record-edit-form object-api-name="Opportunity" record-id={opportunityId}>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="Name" data-name="Name" value={opportunity.Name}></lightning-input-field>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="AccountId" data-name="AccountId" value={opportunity.AccountId}></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="StageName" data-name="StageName" value={opportunity.StageName}></lightning-input-field>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="CloseDate" data-name="CloseDate" value={opportunity.CloseDate}></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <lightning-layout class="slds-m-around_xxx-small">
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="Amount" data-name="Amount" value={opportunity.Amount}></lightning-input-field>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-form__item">
+                                <lightning-input-field field-name="Probability" data-name="Probability" value={opportunity.Probability}></lightning-input-field>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-record-edit-form>
+                </template>
+            </c-lwc-ufw-body-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Footer
+        ============================================================================= -->
+        <span slot="footer">
+            <c-lwc-ufw-footer-qa>
+                <lightning-button label="Cancel" onclick={close}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={save}></lightning-button>
+            </c-lwc-ufw-footer-qa>
+        </span>
+    </c-lwc-ufw-container-qa>
+</template>

@@ -1,0 +1,162 @@
+<!--
+  * @filename      : exmzListTypeDefault
+  * @author        : I2MAX
+  * @date          : 2021-03-09
+  * @group         : 
+  * @group-content : 
+  * @description   :
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-09                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <div slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Example" title="Default">
+                <span slot="buttons">
+                    <!-- Button -->
+                    <lightning-button type=button label="Search" onclick={doSearchOpportunity}></lightning-button>
+<!--                    <lightning-button label="Csv Export" onclick={doCsvExport}></lightning-button>-->
+                    <lightning-button label="Csv Export with Data" onclick={doCsvExportWithData}></lightning-button>
+                </span>
+            </c-lwc-ufw-header>
+        </div>
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <div slot="content">
+            <c-lwc-ufw-body has-search-section=true>
+                <!-- ============================================================================
+                ==== Search Section
+                ============================================================================= -->
+                <div slot="searchSection">
+                    <template if:true={objectInfoWired}>
+                        <c-lwc-ufw-search-bar>
+                            <!-- Search Items -->
+                            <c-lwc-ufw-search-item label={opportunityInfo.fields.Name.label}>
+                                <lightning-input data-id="nameFilter"
+                                                 type="text"
+                                                 label={opportunityInfo.fields.Name.label}
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-item label={opportunityInfo.fields.StageName.label}>
+                                <c-lwc-ufw-combo-box data-id="stageFilter"
+                                                     label={opportunityInfo.fields.StageName.label}
+                                                     label-hidden=true
+                                                     options={stageFieldOptions}
+                                                     change-handler={fireStageChange}
+                                                     onstagechange={handleStageValueChange}>
+                                </c-lwc-ufw-combo-box>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-lookup-item label="Account">
+                                <lightning-record-edit-form object-api-name="Opportunity">
+                                    <lightning-input-field data-id="accountFilter"
+                                                           field-name="AccountId"
+                                                           variant="label-hidden">
+                                    </lightning-input-field>
+                                </lightning-record-edit-form>
+                            </c-lwc-ufw-search-lookup-item>
+                        </c-lwc-ufw-search-bar>
+
+                        <c-lwc-ufw-search-bar custom-class-name="slds-m-top_medium">
+                            <c-lwc-ufw-search-item label="From">
+                                <lightning-input data-id="closeFromFilter"
+                                                 label={opportunityInfo.fields.CloseDate.label}
+                                                 type="date"
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-item label="To">
+                                <lightning-input data-id="closeToFilter"
+                                                 label={opportunityInfo.fields.CloseDate.label}
+                                                 type="date"
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+                            <c-lwc-ufw-search-item label={opportunityInfo.fields.IsWon.label}>
+                                <lightning-input data-id="isWonFilter"
+                                                 type="checkbox"
+                                                 label={opportunityInfo.fields.IsWon.label}
+                                                 variant="label-hidden">
+                                </lightning-input>
+                            </c-lwc-ufw-search-item>
+
+                            <!-- Page Size -->
+                            <c-lwc-ufw-search-item label="Page Size">
+                                <c-lwc-ufw-combo-box data-id="pageSize"
+                                                     label="Page Size"
+                                                     label-hidden=true
+                                                     value="10"
+                                                     options={pageSizeOptions}
+                                                     change-handler={firePageSizeChange}
+                                                     onpagesizechange={handlePageSizeValueChange}>
+                                </c-lwc-ufw-combo-box>
+                            </c-lwc-ufw-search-item>
+                        </c-lwc-ufw-search-bar>
+                    </template>
+                </div>
+                <!-- ============================================================================
+                ==== Table Frame
+                ============================================================================= -->
+                <c-lwc-ufw-table-frame onpreviouspage={handlePreviousPage} onnextpage={handleNextPage}>
+                    <template if:true={opportunityList}>
+                        <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-table_fixed-layout">
+                            <thead>
+                                <template if:true={objectInfoWired}>
+                                    <tr>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.Name.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.StageName.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.AccountId.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.Amount.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.Probability.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.fields.CloseDate.label}></lightning-formatted-text></th>
+                                    </tr>
+                                </template>
+                            </thead>
+                            <tbody>
+                                <template for:each={opportunityList} for:item="opportunity">
+                                    <tr key={opportunity.Id}>
+                                        <td class="slds-truncate">
+                                            <a data-record-id={opportunity.Id} onclick={navigateToRecord}>
+                                                <lightning-formatted-text value={opportunity.Name}></lightning-formatted-text>
+                                            </a>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={opportunity.StageName}></lightning-formatted-text>
+                                        </td>
+<!--
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={opportunity.Account.Name}></lightning-formatted-text>
+                                        </td>
+-->
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value='fadfaf'></lightning-formatted-text>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-number value={opportunity.Amount} format-style="currency"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-number value={opportunity.Probability}> format-style="percent" maximum-fraction-digits="1"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-date-time value={opportunity.CloseDate} ></lightning-formatted-date-time>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                </c-lwc-ufw-table-frame>
+            </c-lwc-ufw-body>
+        </div>
+    </c-lwc-ufw-container>
+</template>

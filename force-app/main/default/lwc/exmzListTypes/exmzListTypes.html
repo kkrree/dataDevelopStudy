@@ -1,0 +1,49 @@
+<!--
+  * @filename      : exmzListTypes
+  * @author        : I2MAX
+  * @date          : 2021-03-09
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-09                 I2MAX           Create
+ -->
+<template>
+
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- Header -->
+        <div slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom63" type="Example" title="List Types">
+            </c-lwc-ufw-header>
+        </div>
+
+        <!-- Body -->
+        <div slot="content">
+            <c-lwc-ufw-body>
+                <div class="slds-p-left_small slds-p-right_small">
+                    <lightning-tabset>
+                        <lightning-tab label="List - Default">
+                            <c-exmz-list-type-default></c-exmz-list-type-default>
+                        </lightning-tab>
+                        <lightning-tab label="List - Checkbox & Action">
+                            <c-exmz-list-type-action></c-exmz-list-type-action>
+                        </lightning-tab>
+<!--                        <lightning-tab label="List - Pubsub">-->
+<!--                            <c-exmz-list-type-pubsub></c-exmz-list-type-pubsub>-->
+<!--                        </lightning-tab>-->
+                    </lightning-tabset>
+                </div>
+            </c-lwc-ufw-body>
+        </div>
+
+    </c-lwc-ufw-container>
+
+
+
+</template>

@@ -1,0 +1,36 @@
+<!--
+  * @filename      : lacComBase
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2020-12-29 오전 7:33
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 Base component
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2020-12-29 오전 7:33     I2MAX            Create
+ -->
+<aura:component extensible="true" description="lacComBase" implements="c:lacComBaseInf">
+
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+    <!-- 공통 Init 처리 -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <div class="slds-is-relative">
+        <aura:if isTrue="{!v.isSpinner}">
+            <lightning:spinner alternativeText="Loading" size="medium" variant="brand" />
+        </aura:if>
+        {!v.body}
+    </div>
+
+</aura:component>

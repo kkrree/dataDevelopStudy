@@ -1,0 +1,76 @@
+<!--
+/**
+* 본 소프트웨어는 관련 법률에 따라 보호되는 삼성의 지식재산 및 영업비밀 입니다.
+* 본 소프트웨어를 권한 없이 사용하거나 삼성의 사전 서면 동의 없이 제3자에게 공개하는 행위는 엄격히 금지되어 있으며
+ * 위반 시 귀하는 무단 사용 또는 비밀 유지 의무 위반에 대해 법적인 책임을 져야 합니다.
+*
+* This software is the intellectual property and confidential information of Samsung Electronics, Co., Ltd.
+* (“Samsung”) protected by applicable laws. The unauthorized use or disclosure of the software to any third
+* party without the prior written consent of Samsung is strictly prohibited, and you should be legally
+* responsible for the unauthorized use or violation of confidentiality obligation.
+*/ 
+
+/****************************************************************************************
+  * @filename      : zz_testDetailEdit
+  * @projectname   : lwc.zz_testDetailEdit
+  * @author        : NR CHOI
+  * @date          : 2021-06-30
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @tester        : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @modification Log
+  * ===============================================================
+  * ver     date                     author              description
+  * ===============================================================
+    0.1     2021-06-30                  NR CHOI            Create
+****************************************************************************************/
+ -->
+
+<!-- Zz Test Detail Edit -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <!-- ============================================================================
+                ==== layout, layoutItem 을 이용하여 구성
+                ============================================================================= -->
+                <lightning-record-edit-form object-api-name="Opportunity"
+                                            record-id={tempRecordId}
+                                            onsubmit={handleSubmit}
+                                            onsuccess={handleSuccess}>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="AccountId" ></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input label="Account Phone" type="text"  value={accountPhone} data-id="accPhoneNum"></lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="Name"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="CloseDate"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-layout class="slds-m-around_xxx-small">
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="StageName"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-form__item">
+                            <lightning-input-field field-name="IsPrivate"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-button class="slds-m-top_x-small"
+                                      type="submit"
+                                      label={tempButtonLabel}>
+                    </lightning-button>
+                </lightning-record-edit-form>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

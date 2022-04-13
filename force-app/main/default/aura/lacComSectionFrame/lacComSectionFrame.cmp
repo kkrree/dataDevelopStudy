@@ -1,0 +1,47 @@
+<!--
+  * @filename      : lacComSectionFrame
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-04 오전 10:00
+  * @group         : 
+  * @group-content : 
+  * @description   : 공통 섹션 component
+  *                : 구성별 섹션 영역 분리시 사용(header 영역이 포함되어 섹션명을 정함)
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-04 오전 10:00    I2MAX            Create
+ -->
+<aura:component description="lacComSectionFrame">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="title" type="String" default="Title" description="header title"/>
+    <aura:attribute name="hasHeader" type="Boolean" default="true" description="header 사용 여부"/>
+
+    <!-- =============================================================================================================
+    ==== Body
+    ============================================================================================================== -->
+    <aura:if isTrue="{!v.hasHeader}">
+        <h3 class="slds-section__title slds-theme_shade">
+            <span class="slds-truncate slds-m-left_small" title="Section Title">{#v.title}</span>
+        </h3>
+    </aura:if>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-has-flexi-truncate slds-grid">
+            <fieldset class="slds-form-element slds-form_compound slds-is-editing">
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__group">
+                        {!v.body}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</aura:component>

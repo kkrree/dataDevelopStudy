@@ -1,0 +1,28 @@
+/****************************************************************************************
+ * @filename      : lacComSearchLookupItem.css
+ * @projectname   :
+ * @author        : I2MAX
+ * @date          : 2021-01-13 오전 9:10
+ * @group         :
+ * @group-content :
+ * @description   :
+ * @tester        :
+ * @reference     :
+ * @release       : v1.0.0
+ * @copyright     : Copyright © I2max. All Rights Reserved.
+ * @modification Log
+ * ===============================================================
+ * ver     date                      author        description
+ * ===============================================================
+   0.1     2021-01-13 오전 9:10       I2MAX          Create
+ ****************************************************************************************/
+.THIS {
+}
+
+.THIS .i2-searchLookupItem-p__right {
+    padding-right: 10px;
+}
+
+.THIS.i2-searchLookupItem-p__top {
+    padding-top: 9px;
+}

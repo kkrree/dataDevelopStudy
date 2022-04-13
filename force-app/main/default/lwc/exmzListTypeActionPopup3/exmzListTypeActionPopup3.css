@@ -1,0 +1,12 @@
+table thead tr td:first-child{
+    width : 40%;
+}
+
+.addRowButton {
+    height : 2.5rem;
+    font-weight: bold;
+}
+.addRowButton:hover {
+    cursor : pointer;
+    background : #FAFAF9;
+}

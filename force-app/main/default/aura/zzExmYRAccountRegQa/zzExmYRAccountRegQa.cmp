@@ -1,0 +1,58 @@
+<!--
+ - Created by MS on 2021-04-06.
+ -->
+
+<aura:component extends="c:exmBase"
+                controller="ZzExmYRAccountRegQa"
+                description="zzExmYRAccountRegQa">
+
+    <aura:attribute name="account" type="Account" default="{'sobjectType':'Account'}"/>
+    <!-- =============================================================================================================
+        ==== component
+        ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="계정 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Account">
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="name" class="slds-size_1-of-2 right-side" fieldName="Name" value="{!v.account.Name}"/>
+                                <lightning:inputField aura:id="phone" class="slds-size_1-of-2 left-side" fieldName="Phone" value="{!v.account.Phone}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="owner" class="slds-size_1-of-2 right-side" fieldName="OwnerId" value="{!v.account.OwnerId}"/>
+                                <lightning:inputField aura:id="amount" class="slds-size_1-of-2 left-side" fieldName="AccountNumber" value="{!v.account.AccountNumber}"/>
+                            </div>
+                        </div>
+                        <div class="slds-modal__content">
+                            <div class="slds-list_horizontal slds-p-around_xx-small">
+                                <lightning:inputField aura:id="probability" class="slds-size_1-of-2 right-side" fieldName="Site" value="{!v.account.Site}"/>
+                                <lightning:inputField aura:id="closeDate" class="slds-size_1-of-2 left-side" fieldName="AnnualRevenue" value="{!v.account.AnnualRevenue}"/>
+                            </div>
+                        </div>
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+                <lightning:button aura:id="btnNext" label="next" variant="brand" onclick="{!c.doNext}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+
+</aura:component>

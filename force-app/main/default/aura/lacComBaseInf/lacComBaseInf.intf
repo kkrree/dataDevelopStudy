@@ -1,0 +1,60 @@
+<!--
+  * @filename      : lacComBaseInf
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2020-12-29 오전 7:33
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2020-12-29 오전 7:33     I2MAX            Create
+ -->
+<aura:interface description="lacComBaseInf">
+    <!-- ===================================================================================================
+    ==== 전체 공통 로깅 처리 속성
+    ==================================================================================================== -->
+    <aura:attribute name="isLogging" type="Boolean" default="{#true}" required="{#true}" description="전체 console log 처리 여부"/>
+
+    <!-- ================================================================================
+    ==== formFactor 를 이용한 isDeskTop 과 isDeskTopOrTable 만 변수처리
+    ==== 나머지 판단은 $Browser의 정해진 속성을 이용하여 판단함
+    ================================================================================= -->
+    <!-- ===================================================================================================
+    ==== isDeskTop 여부
+    ==================================================================================================== -->
+    <aura:attribute name="isDeskTop" type="Boolean" default="{!equals($Browser.formFactor, 'DESKTOP')}" description="DeskTop 여부"/>
+
+    <!-- ===================================================================================================
+    ==== isDeskTopOrTablet 여부
+    ==================================================================================================== -->
+    <aura:attribute name="isDeskTopOrTablet" type="Boolean" default="{!or(v.isDeskTop, $Browser.isTablet)}" description="DeskTop or Tablet 여부"/>
+
+    <!-- ===================================================================================================
+    ==== Community 여부
+    ==================================================================================================== -->
+    <aura:attribute name="isCommunity" type="Boolean" default="false" description="커뮤니티 사이트 여부"/>
+
+    <!-- ===================================================================================================
+    ==== 데이터 속성
+    ==================================================================================================== -->
+    <aura:attribute name="initData" type="Map" default="{}" description="초기 Init 데이터"/>
+    <aura:attribute name="reqData" type="Map" default="{}" description="요청 데이터"/>
+    <aura:attribute name="resData" type="Map" default="{}" description="결과 데이터"/>
+    <aura:attribute name="recordList" type="List" default="[]" description="결과 데이터중 리스트 데이터"/>
+
+    <!-- ===================================================================================================
+    ==== Label 다국어 속성
+    ==================================================================================================== -->
+    <aura:attribute name="labelMap" type="Map" description="label 다국어 처리"/>
+
+    <!-- ===================================================================================================
+    ==== Global Spinner 처리
+    ==================================================================================================== -->
+    <aura:attribute name="isSpinner" type="Boolean" default="false" description="Global Spinner"/>
+</aura:interface>

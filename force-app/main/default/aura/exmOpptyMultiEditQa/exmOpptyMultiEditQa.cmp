@@ -1,0 +1,93 @@
+<!--
+  * @filename      : exmOpptyMultiEditQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-06 오후 5:14
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-06 오후 5:14     I2MAX            Create
+ -->
+<aura:component extends="c:exmBase"
+                controller="ExmOpptyMultiEditQa"
+                description="exmOpptyMultiEditQa">
+
+    <!-- =============================================================================================================
+    ==== public attribute
+    ============================================================================================================== -->
+    <aura:attribute name="labelMap" type="Map" access="public" description="label관련 data를 담는 attribute"/>
+    <aura:attribute name="deleteIds" type="List" access="public" description=""/>
+
+    <!-- =============================================================================================================
+    ==== handler
+    ============================================================================================================== -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- =============================================================================================================
+    ==== component
+    ============================================================================================================== -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================== -->
+    <c:lacComContainerQa>
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="다중 등록"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComTable>
+                    <thead>
+                        <tr>
+                            <c:lacComTh>Save</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.name}">{!v.labelMap.name}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.accountid}">{!v.labelMap.accountid}</c:lacComTh>
+                            <c:lacComTh title="{!v.labelMap.iswon}">{!v.labelMap.iswon}</c:lacComTh>
+                            <c:lacComTh>Delete/Copy</c:lacComTh>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <aura:iteration items="{!v.recordList}" var="record" indexVar="idx">
+                            <tr>
+                                <c:lacComTd>
+                                    <lightning:input aura:id="mycheck" label="" type="checkbox" value="{!record}"/>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.Name}">
+                                    <lightning:input label="" type="text" value="{!record.Name}" class="slds-m-bottom_medium"/>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.AccountId}">
+                                    <lightning:recordEditForm objectApiName="Opportunity" recordId="{#record.Id}">
+                                        <lightning:inputField fieldName="AccountId" value="{!record.AccountId}" variant="label-hidden"/>
+                                    </lightning:recordEditForm>
+                                </c:lacComTd>
+                                <c:lacComTd title="{#record.IsWon}">
+                                    <lightning:input label="" type="checkbox" value="{!record.IsWon}"/>
+                                </c:lacComTd>
+                                <c:lacComTd>
+                                    <lightning:buttonIcon name="{#idx}" iconName="utility:delete" variant="bare" value="{#record.Id}" onclick="{!c.doDelete}" alternativeText="delete"/>
+                                    <lightning:buttonIcon name="{#idx}" iconName="utility:copy" variant="bare" value="{#record}" onclick="{!c.doCopy}" alternativeText="copy"/>
+                                </c:lacComTd>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </c:lacComTable>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa>
+                <lightning:button aura:id="btnSave" label="save" variant="brand" onclick="{!c.doSave}"/>
+            </c:lacComFooterQa>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

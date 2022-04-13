@@ -1,0 +1,126 @@
+<!--
+  * @filename      : exmzListTypeAction
+  * @author        : I2MAX
+  * @date          : 2021-03-10
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-10                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- ============================================================================
+        ==== Header Slot
+        ============================================================================= -->
+        <div slot="header">
+            <c-lwc-ufw-header icon-name="custom:custom100" type="Example" title="Checkbox & Action">
+                <span slot="buttons">
+                    <lightning-button label="Edit records description" onclick={renderPopup}></lightning-button>
+                </span>
+            </c-lwc-ufw-header>
+        </div>
+        <!-- ============================================================================
+        ==== Content Slot
+        ============================================================================= -->
+        <div slot="content">
+            <c-lwc-ufw-body has-search-section=false>
+                <!-- ============================================================================
+                ==== Table Frame
+                ============================================================================= -->
+                <c-lwc-ufw-table-frame onpreviouspage={handlePreviousPage} onnextpage={handleNextPage}>
+                    <template if:true={opportunityList}>
+                        <table class="slds-table slds-table_cell-buffer slds-table--col-bordered slds-table--bordered slds-no-row-hover slds-table_fixed-layout">
+                            <thead>
+                                <template if:true={opportunityInfo.data}>
+                                    <tr>
+                                        <th>
+                                            <lightning-input type="checkbox" label="" variant="label-hidden" onchange={handleCheckAll} checked={allChecked}></lightning-input>
+                                        </th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.Name.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.StageName.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.AccountId.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.Amount.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.Probability.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.CloseDate.label}></lightning-formatted-text></th>
+                                        <th><lightning-formatted-text value={opportunityInfo.data.fields.Description.label}></lightning-formatted-text></th>
+                                        <th></th>
+                                    </tr>
+                                </template>
+                            </thead>
+                            <tbody>
+                                <template for:each={wrapperList} for:item="wrapper">
+                                    <tr key={wrapper.opportunity.Id}>
+                                        <td>
+                                            <div class="slds-align_absolute-center">
+                                                <lightning-input type="checkbox" label="" variant="label-hidden"
+                                                                 data-record-id={wrapper.opportunity.Id} onchange={handleCheckboxChange} checked={wrapper.checked}>
+                                                </lightning-input>
+                                            </div>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <a data-record-id={wrapper.opportunity.Id} onclick={handleNavigateToRecord}>
+                                                <lightning-formatted-text value={wrapper.opportunity.Name}></lightning-formatted-text>
+                                            </a>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={wrapper.opportunity.StageName}></lightning-formatted-text>
+                                        </td>
+<!--
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={wrapper.opportunity.Account.Name}></lightning-formatted-text>
+                                        </td>
+-->
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value='adfadf'></lightning-formatted-text>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-number value={wrapper.opportunity.Amount} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-number value={wrapper.opportunity.Probability}> format-style="percent" maximum-fraction-digits="1"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-truncate slds-text-align_right">
+                                            <lightning-formatted-date-time value={wrapper.opportunity.CloseDate} ></lightning-formatted-date-time>
+                                        </td>
+                                        <td class="slds-truncate">
+                                            <lightning-formatted-text value={wrapper.opportunity.Description} ></lightning-formatted-text>
+                                        </td>
+                                        <td>
+                                            <lightning-button-menu>
+                                                <lightning-menu-item icon-name="utility:edit" label="Edit Record" data-record-id={wrapper.opportunity.Id} onclick={renderPopup2}></lightning-menu-item>
+                                                <lightning-menu-item icon-name="utility:edit" label="Edit LineItem" data-record-id={wrapper.opportunity.Id} onclick={renderPopup3}></lightning-menu-item>
+                                                <lightning-menu-item label=" Draft Menu" is-draft=true disabled=true></lightning-menu-item>
+                                            </lightning-button-menu>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                </c-lwc-ufw-table-frame>
+            </c-lwc-ufw-body>
+        </div>
+        <!-- ============================================================================
+        ==== Footer
+        ============================================================================= -->
+        <div slot="footer">
+        </div>
+        <!-- ============================================================================
+        ==== Popup
+        ============================================================================= -->
+        <div slot="quickAction">
+            <c-lwc-ufw-dynamic-render class="quickActionRender">
+                <c-exmz-list-type-action-popup onsaverecord={handleReload}></c-exmz-list-type-action-popup>
+                <c-exmz-list-type-action-popup-2 onupdaterecord={handleReload}></c-exmz-list-type-action-popup-2>
+                <c-exmz-list-type-action-popup-3></c-exmz-list-type-action-popup-3>
+            </c-lwc-ufw-dynamic-render>
+        </div>
+    </c-lwc-ufw-container>
+</template>

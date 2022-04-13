@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <description>Exmz D Card Types Design</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__Tab</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage,lightningCommunity__Default">
+            <!--==========================================================================
+            = [Field Names]
+            = ',' 로 구분하여 필드명 입력
+            ==========================================================================-->
+            <property name="designFieldNames" type="String" default="" label="Field Names"/>
+
+            <!--==========================================================================
+            = [Community Record ID]
+            = UI 에서 Record ID 정상식별되지 않는경우, Default 프로퍼티를 제거하고 Builder 에서 {!recordId} 직접 입력하여 사용
+            ==========================================================================-->
+            <property name="recordId" type="String" label="Record ID" description="Should be set to {!recordId}"/>
+        </targetConfig>
+    </targetConfigs>
+
+    <masterLabel>Exmz D Card Types Design</masterLabel>
+</LightningComponentBundle>

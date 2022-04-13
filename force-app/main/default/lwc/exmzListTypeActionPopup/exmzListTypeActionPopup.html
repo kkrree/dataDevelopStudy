@@ -1,0 +1,52 @@
+<!--
+  * @filename      : exmzListTypeActionPopup
+  * @author        : I2MAX
+  * @date          : 2021-03-11
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-11                 I2MAX           Create
+ -->
+<template>
+    <c-lwc-ufw-container-qa show-modal={showModal}>
+        <!-- ============================================================================
+        ==== Header
+        ============================================================================= -->
+        <span slot="header">
+            <c-lwc-ufw-header-qa header-string="Edit Description"></c-lwc-ufw-header-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Content
+        ============================================================================= -->
+        <span slot="content">
+            <c-lwc-ufw-body-qa>
+                <template if:true={opportunityList} for:each={opportunityList} for:item="opportunity" for:index="idx">
+                    <!-- <input-field> 태그의 기본 필드명이 나오는 Label 을 Custom 변경 -->
+                    <lightning-record-edit-form key={opportunity.Id} object-api-name='Opportunity' record-id={opportunity.Id} class="slds-m-around_small">
+                        <label class="slds-form-element__label" for={idx}>{opportunity.Name}</label>
+                        <lightning-input-field id={idx} data-record-id={opportunity.Id}
+                                               field-name='Description' variant="label-hidden"
+                                               value={opportunity.Description}>
+                        </lightning-input-field>
+                    </lightning-record-edit-form>
+                </template>
+            </c-lwc-ufw-body-qa>
+        </span>
+        <!-- ============================================================================
+        ==== Footer
+        ============================================================================= -->
+        <span slot="footer">
+            <c-lwc-ufw-footer-qa>
+                <lightning-button label="Cancel" onclick={close}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={save}></lightning-button>
+            </c-lwc-ufw-footer-qa>
+        </span>
+    </c-lwc-ufw-container-qa>
+</template>

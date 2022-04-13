@@ -1,0 +1,55 @@
+<!--
+  * @filename      : exmOpptyModifyQa
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-12 오전 10:57
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-12 오전 10:57    I2MAX            Create
+ -->
+<aura:component extends="c:exmBase"
+                implements="force:hasRecordId,force:appHostable,force:lightningQuickActionWithoutHeader"
+                controller="ExmOpptyModifyQa"
+                description="exmOpptyModifyQa">
+
+    <!-- =============================================================================================================
+    ==== private attribute
+    ============================================================================================================== -->
+    <aura:attribute name="oppty" type="Opportunity" access="private" default="{'sobjectType':'Opportunity'}" description=""/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <!-- =============================================================================================================
+    ==== body
+    ============================================================================================================== -->
+    <c:lacComContainerQa isSmall="{#true}">
+        <aura:set attribute="header">
+            <c:lacComHeaderQa title="QuickAction Test"/>
+        </aura:set>
+
+        <aura:set attribute="content">
+            <c:lacComBodyQa>
+                <c:lacComSectionFrame hasHeader="{#true}" title="Section Sample">
+                    <lightning:recordEditForm objectApiName="Opportunity" recordId="{#v.recordId}">
+                        <div class="slds-list_horizontal">
+                            <lightning:inputField fieldName="Amount" class="slds-size_1-of-2 right-side" value="{!v.oppty.Amount}" variant="label-hidden"/>
+                            <lightning:inputField fieldName="CloseDate" class="slds-size_1-of-2 left-side" value="{!v.oppty.CloseDate}" variant="label-hidden"/>
+                        </div>
+                    </lightning:recordEditForm>
+                </c:lacComSectionFrame>
+            </c:lacComBodyQa>
+        </aura:set>
+
+        <aura:set attribute="footer">
+            <c:lacComFooterQa/>
+        </aura:set>
+    </c:lacComContainerQa>
+</aura:component>

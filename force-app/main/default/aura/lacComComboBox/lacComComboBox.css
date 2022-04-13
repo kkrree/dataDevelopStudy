@@ -1,0 +1,32 @@
+/****************************************************************************************
+ * @filename      : lacComComboBox.css
+ * @projectname   :
+ * @author        : I2MAX
+ * @date          : 2021-01-11 오후 5:18
+ * @group         :
+ * @group-content :
+ * @description   :
+ * @tester        :
+ * @reference     :
+ * @release       : v1.0.0
+ * @copyright     : Copyright © I2max. All Rights Reserved.
+ * @modification Log
+ * ===============================================================
+ * ver     date                      author        description
+ * ===============================================================
+   0.1     2021-01-04 오전 9:03       I2MAX          Create
+ ****************************************************************************************/
+.THIS {
+}
+
+.THIS.custom-input__small input {
+    width: 200px;
+}
+
+.THIS.custom-input__medium input {
+    width: 250px;
+}
+
+.THIS.custom-input__large input {
+    width: 300px;
+}

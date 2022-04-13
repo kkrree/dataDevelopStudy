@@ -1,0 +1,29 @@
+<!--
+  * @filename      : exmzEventTypesPubSub
+  * @author        : I2MAX
+  * @date          : 2021-03-12
+  * @group         : 
+  * @group-content : 
+  * @description   : Exmz Event Types Pub Sub
+  * @reference     : 
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author      description
+  * ===============================================================
+    0.1     2021-03-12         I2MAX       Create
+ -->
+<template>
+    <c-lwc-ufw-container is-spinner={gComIsSpinner}>
+        <!-- Body -->
+        <span slot="content">
+            <c-lwc-ufw-body>
+                <c-exmz-event-types-sample-parent-pubsub>
+                    <c-exmz-event-types-sample-child-pubsub ></c-exmz-event-types-sample-child-pubsub>
+                    <div>PubSub value from PubSubRegisterListener : {eventValue}</div>
+                </c-exmz-event-types-sample-parent-pubsub>
+            </c-lwc-ufw-body>
+        </span>
+    </c-lwc-ufw-container>
+</template>

@@ -1,0 +1,66 @@
+<!--
+  * @filename      : exmzWrapper
+  * @projectname   :
+  * @author        : i2max
+  * @date          : 2021-03-16
+  * @group         :
+  * @group-content :
+  * @description   :
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date            author         description
+  * ===============================================================
+    0.1     2021-03-16     	i2max          Create
+ -->
+<aura:component extends="c:lacComWrapBase"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+                description="exmzWrapper">
+
+    <!-- =============================================================================
+    ==== event detail 데이터 저장
+    ============================================================================== -->
+    <aura:attribute name="detail1" type="Map" default="{}"/>
+    <aura:attribute name="detail2" type="Map" default="{}"/>
+
+    <!-- =============================================================================
+    ==== pubsub 이벤트를 정의
+    ============================================================================== -->
+    <aura:attribute name="pubsubReadyEventName" type="String" default="lwctolac_pubsub"/>
+    <aura:attribute name="pubsubReadyAction" type="Aura.Action" default="{!c.handlePubSubEventFromLWC}"/>
+
+    <c:lacComContainer >
+        <aura:set attribute="header">
+            <c:lacComHeader iconName="custom:custom100" type="Example" title="Co-exist LAC"/>
+        </aura:set>
+        <aura:set attribute="content">
+            <c:lacComBody>
+                <div class="slds-p-left_small slds-p-right_small">
+                    <div class="slds-box_border slds-m-around_large">
+                        <p>Aura Component</p>
+                        <div class="slds-p-around_large">
+                            <lightning:button label="callDirectLWC" onclick="{!c.callDirectLWC}"/>
+                            <lightning:button label="pubsubToLWC" onclick="{!c.firePubSubEventToLWC}"/>
+
+                            <lightning:tabset aura:id="handleTabset" selectedTabId="1">
+                                <lightning:tab label="event lac from lwc" id="1">
+                                    <c:exmzWrapperSample aura:id="lwcComponent" lwcString="injection from LAC" onlwctolac="{!c.handleEventFromLWC}"/>
+                                </lightning:tab>
+                                <lightning:tab label="dispatch handle event" id="2">
+                                    <div>ok dispatch value : {!v.detail1.value}</div>
+                                </lightning:tab>
+                                <lightning:tab label="pubsub handle event" id="3">
+                                    <div>ok pubsub value : {!v.detail2.value}</div>
+                                </lightning:tab>
+                            </lightning:tabset>
+
+                        </div>
+                    </div>
+                </div>
+            </c:lacComBody>
+        </aura:set>
+    </c:lacComContainer>
+
+</aura:component>

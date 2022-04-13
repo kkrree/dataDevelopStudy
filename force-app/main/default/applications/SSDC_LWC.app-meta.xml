@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>SSDC LWC</label>
+    <navType>Standard</navType>
+    <tabs>lwcComAPI</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>ListTypes</tabs>
+    <tabs>exmzDetailTypes</tabs>
+    <tabs>exmzModuleTypes</tabs>
+    <tabs>exmzEventTypes</tabs>
+    <tabs>exmzDynamicRenderTypes</tabs>
+    <tabs>exmzWrapper</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>LWC_UtilityBar</utilityBar>
+</CustomApplication>

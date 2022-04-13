@@ -1,0 +1,28 @@
+<!--
+  * @filename      : lacComBodyDetailCard
+  * @projectname   : 
+  * @author        : I2MAX
+  * @date          : 2021-01-14 오전 11:05
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     :
+  * @release       : v1.0.0
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author          description
+  * ===============================================================
+    0.1     2021-01-14 오전 11:05    I2MAX            Create
+ -->
+<aura:component description="lacComBodyDetailCard">
+
+    <!-- =============================================================================================================
+    ==== content
+    ============================================================================================================== -->
+    <div class="previewMode MEDIUM forceRelatedListPreview slds-m-around_small">
+        <div class="useHeaderBarFix forceBaseListView forceRelatedListPreviewGrid">
+            {#v.body}
+        </div>
+    </div>
+</aura:component>

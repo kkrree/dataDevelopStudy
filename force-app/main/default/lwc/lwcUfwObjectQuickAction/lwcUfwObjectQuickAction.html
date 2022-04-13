@@ -1,0 +1,53 @@
+<!--
+  * @filename      : lwcUfwObjectQuickAction
+  * @author        : I2MAX
+  * @date          : 2021-03-05
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-03-05                 I2MAX           Create
+ -->
+<template>
+    <template if:true={showQuickAction}>
+        <!-- ===========================================================
+        ==== Header
+        ============================================================ -->
+        <div class="modal-header slds-modal__header slds-size_1-of-1">
+            <template if:true={hasHeaderString}>
+                <h2 class="slds-text-heading_medium slds-hyphenate header-string">
+                    {header}
+                </h2>
+            </template>
+        </div>
+        <!-- ===========================================================
+        ==== content
+        ============================================================ -->
+        <div class="slds-is-relative">
+            <!-- ===========================================================
+            ==== modal spinner
+            ============================================================ -->
+            <template if:true={isSpinner}>
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </template>
+            <div class="slds-modal__content slds-p-around--x-small slds-size_1-of-1">
+                <!-- ====================================================
+                ==== content body
+                ===================================================== -->
+                <slot name="contents"></slot>
+            </div>
+        </div>
+        <!-- ===========================================================
+        ==== Footer
+        ============================================================ -->
+        <footer class="modal-footer slds-modal__footer slds-p-around--x-small modal-hidden">
+            <slot name="footer" onslotchange={handleSlotFooterChange}></slot>
+        </footer>
+    </template>
+</template>

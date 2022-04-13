@@ -1,0 +1,39 @@
+<!--
+  * @filename      : lwcUfwBodyQa
+  * @author        : I2MAX
+  * @date          : 2021-02-15
+  * @group         : 
+  * @group-content : 
+  * @description   : 
+  * @reference     : 
+  * @release       : 
+  * @copyright     : Copyright © I2max. All Rights Reserved.
+  * @modification Log
+  * ===============================================================
+  * ver     date                    author        description
+  * ===============================================================
+    0.1     2021-02-15                 I2MAX           Create
+ -->
+<template>
+    <!-- ===========================================================
+    ==== content
+    ============================================================ -->
+    <div class="slds-is-relative">
+        <!-- ===========================================================
+        ==== modal spinner
+        ============================================================ -->
+        <template if:true={isSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+        </template>
+        <!-- ===========================================================
+        ==== body
+        ============================================================ -->
+        <div class="slds-modal__content slds-p-around_medium">
+            <slot></slot>
+            <!-- picklist 값 또는 날짜 값을 선택하는 창을 위해 영역을 더 준다. -->
+            <template if:true={extraDivHeight}>
+                <div style={extraDivStyle}></div>
+            </template>
+        </div>
+    </div>
+</template>
