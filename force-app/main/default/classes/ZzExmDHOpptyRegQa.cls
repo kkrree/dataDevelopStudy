@@ -48,7 +48,6 @@ public with sharing class ZzExmDHOpptyRegQa {
                         Name,
                         NumberOfEmployees,
                         NumberofLocations__c,
-                        OperatingHoursId,
                         OwnerId,
                         Ownership,
                         ParentId,
