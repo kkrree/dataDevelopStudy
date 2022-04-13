@@ -116,12 +116,10 @@
         <members>lacComUtil</members>
         <members>lacComWrapBase</members>
         <members>lsSalesNotDeliveryList</members>
-        <members>zZ_YRquick</members>
         <members>zzExmDHConList</members>
         <members>zzExmDHConMultiEditQa</members>
         <members>zzExmDHConReg2Qa</members>
         <members>zzExmDHConRegQa</members>
-        <members>zzExmDHContact</members>
         <members>zzExmDHContactList</members>
         <members>zzExmTJAccountList</members>
         <members>zzExmTJOpptylist</members>
@@ -310,6 +308,10 @@
         <members>i2Api</members>
         <members>i2comlib</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>TestMessageChannel</members>
+        <name>LightningMessageChannel</name>
     </types>
     <version>50.0</version>
 </Package>
